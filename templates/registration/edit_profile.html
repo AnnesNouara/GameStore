@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Edit Profile{% endblock title %}
+{% block content %}
+{% if user.is_authenticated %}
+
+<div class="text-center form-group">
+    <h1>Edit Profile <img src="{% static 'images/edit.webp' %}" alt="" height="50rem" width="50rem"></h1>
+    <hr class="rounded">
+    <br>
+    <div>
+    <img src="{% static 'images/profile.png' %}" alt="" height="150rem" width="150rem">
+    </div>
+    <br>
+{% if is_manager %}
+        <strong>Title: Manager</strong>
+        {% endif %}
+    <br>
+        Username: {{ user.profile.user }}
+    <br>
+        Date Of Birth: {{ user.profile.date_of_birth }}
+    <br>
+    <hr class="rounded">
+    <strong><p>Note: You cannot change your username or DOB.</p></strong>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input class="btn btn-dark" type="submit" value="Update Profile">
+    </form>
+</div>
+{% endif %}
+{% endblock content %}
