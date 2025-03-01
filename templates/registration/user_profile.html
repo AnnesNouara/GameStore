@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}User Profile{% endblock title %}
+{% block content %}
+
+    <br>
+    <div class="text-center">
+        <h1>Profile</h1>
+        <hr class="rounded">
+        <img src="{% static 'images/profile.png' %}" alt="" height="150rem" width="150rem">
+    </div>
+    <br>
+    <br>
+    <div class="text-center">
+        {% if is_manager %}
+        <strong>Title: Manager</strong>
+        {% endif %}
+    <br>
+        Username: {{ user.profile.user }}
+    <br>
+        Date Of Birth: {{ user.profile.date_of_birth }}
+    <br/>
+        Favourite Artist: {{ user.profile.artist }}
+        <br>
+        <br>
+        {% if is_manager %}
+        <strong>Manager Permissions:</strong>
+        <br>
+        <a href="{% url 'vinyl:music_create' %}"><button class = "btn btn-dark">Add Product</button></a>
+        {% endif %}
+    </div>
+{% endblock content %}
