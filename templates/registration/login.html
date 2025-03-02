@@ -11,20 +11,17 @@
 </head>
 <body>
   {% block content %}
- 
-<br>
-<br>
-  <br>
-    <div class="  card-body">
-      <h5 class="text-center text-white text-uppercase">Log in</h5>
-      <hr class="rounded text-white">
-      <form class="text-white" method="post">
+ <br>
+    <div class="card-body">
+      <h5 class="text-center text-uppercase">Log in</h5>
+      <hr class="rounded">
+      <form class="" method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <button class="btn btn-primary ml-2" type="submit">Log In</button>
         <br>
         <br>
-          <a class="text-white" href="{% url 'csignup' %}">Dont have an account?</a>
+          <a class="" href="{% url 'csignup' %}">Dont have an account?</a>
       </form>
     </div>
 </div>

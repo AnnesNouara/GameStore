@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+<title>{% block title %} Pulse - Home {% endblock title %}</title>
+<br> 
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active" aria-current="page">Home</li>
+    </ol>
+  </nav>
+  {% if user.is_authenticated %}
+<section id="HomeBox1">
+  <h1 class = "text-center">
+    Welcome to <b>Pulse</b>, {{user.username}}
+  </h1>
+</section>
+
+<section id="HomeBox2">
+    <h2 class = "text-center">
+    Banner
+    </h2>
+</section>
+
+<section id="HomeBox3">
+    <h3 class = "text-center">
+        Recommended for you
+    </h3>
+    <!-- User favourite genre here -->
+</section>
+
+  {% else %}
+<h1 class="text-center">
+    You aren't logged in
+</h1>
+{% endif %}
+{% endblock content %}

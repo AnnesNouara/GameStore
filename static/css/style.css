@@ -1,0 +1,18 @@
+#HomeBox1 {
+    color: purple;
+    border-style: double;
+    border-color: black;
+    padding: 3.5%;
+}
+
+#HomeBox2 {
+    border-style: double;
+    margin-top: 2%;
+    padding: 5%;
+}
+
+#HomeBox3 {
+    border-style: double;
+    margin-top: 2%;
+    padding: 5%;
+}
