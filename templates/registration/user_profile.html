@@ -7,7 +7,7 @@
     <div class="text-center">
         <h1>Profile</h1>
         <hr class="rounded">
-        <img src="{% static 'images/profile.png' %}" alt="" height="150rem" width="150rem">
+        <img src="{% static 'images/icon1.png' %}" alt="" height="150rem" width="150rem">
     </div>
     <br>
     <br>
@@ -17,12 +17,16 @@
         {% endif %}
     <br>
         Username: {{ user.profile.user }}
-    <br>
-        Date Of Birth: {{ user.profile.date_of_birth }}
     <br/>
-        Favourite Artist: {{ user.profile.artist }}
+        Favourite Developer: {{ user.profile.artist }}
         <br>
+        Favourite Game:
         <br>
+        <hr class="rounded">
+        <strong>Permissions:</strong>
+        <br>
+        <a href="{% url 'password_change' %}"><button class = "btn btn-dark">Change Password</button></a>
+        <a href="{% url 'edit_profile' user.profile.pk %}"><button class="btn btn-dark">Edit profile</button></a>
         {% if is_manager %}
         <strong>Manager Permissions:</strong>
         <br>

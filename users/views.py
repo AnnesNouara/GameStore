@@ -34,7 +34,7 @@ class ManagerSignUpView(CreateView):
 class ProfileEditView(UpdateView):
     model = Profile
     template_name = 'registration/edit_profile.html'
-
+    fields = ['Developer']
 
 class ProfilePageView(DetailView):
     model = Profile
