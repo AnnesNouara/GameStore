@@ -2,6 +2,7 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.urls import reverse
+from pages.models import Developer
 
 class CustomUser(AbstractUser):
     age = models.PositiveIntegerField(null=True, blank=True)
@@ -14,6 +15,7 @@ class Profile(models.Model):
         on_delete=models.CASCADE,
     )
     date_of_birth = models.DateField(blank=True, null=True)
+    Developer = models.ForeignKey(Developer, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return str(self.user) 

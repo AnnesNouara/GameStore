@@ -31,7 +31,7 @@
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> {{ user.username }} </a>
                 <ul class="dropdown-menu dropdown-menu-end">
 
-                  {% if user.profile %}
+                  {% if user.is_authenticated %}
                   <li><a class="dropdown-item" href="{% url 'user_profile' user.profile.pk %}">View Profile</a></li>
                   <li><a class="dropdown-item" href="{% url 'edit_profile' user.profile.pk %}">Edit Profile</a></li>
                   <li><a class="dropdown-item" href="{% url 'password_change' %}">Change password</a></li>
