@@ -1,16 +1,17 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags%}
 {% block content %}
-<title>{% block title %} Pulse - New Game {% endblock title %}</title>
+<title>{% block title %} Pulse - Editing {{product.name}} {% endblock title %}</title>
 <nav aria-label="breadcrumb">
     <br>
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="{% url 'pages:all_products' %}" aria-current="page">Home</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Create new game</li>
+      <li class="breadcrumb-item"><a href="{% url 'pages:product_detail' product.category.id product.id %}" aria-current="page">{{product.name}}</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Edit {{product.name}}</li>
     </ol>
   </nav>
-  <h1> Create new Game entry </h1>
-  <form action="" method="post" enctype="multipart/form-data">
+  <h1> Editing {{product.name}}... </h1>
+  <form action="" method="POST">
     {% csrf_token %}
     {{ form|crispy }}
     <button class="btn btn-success ml-2" type="submit">Save</button>

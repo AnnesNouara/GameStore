@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags%}
+{% block content %}
+<title>{% block title %} Pulse - Deleting {{product.name}} {% endblock title %}</title>
+<nav aria-label="breadcrumb">
+    <br>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'pages:all_products' %}" aria-current="page">Home</a></li>
+      <li class="breadcrumb-item"><a href="{% url 'pages:product_detail' product.category.id product.id %}" aria-current="page">{{product.name}}</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Delete {{product.name}}</li>
+    </ol>
+  </nav>
+  <h1> Deleting {{product.name}} </h1>
+  <form action="" method="POST">
+    {% csrf_token %}
+    <p>Are you sure you want to delete "{{ product.name }}"?</p>
+<input type="submit" value="Confirm"/>
+</form>
+{% endblock content%}
