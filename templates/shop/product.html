@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<title>{% block title %} Pulse - {{product.name}} {% endblock title %}</title>
+<br>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'pages:all_products' %}" aria-current="page">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{product.name}}</li>
+    </ol>
+{% if is_manager %}
+    <a href="{% url 'pages:game_edit' product.category.id product.id %}">Edit game</a>
+    <a href="{% url 'pages:game_delete' product.category.id product.id %}">Delete game</a>
+{% endif %}
+  </nav>
+        <div class="container">
+            <br>
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-6 text-center">
+                    <div style="min-width:18rem;">
+                        <img src="{{product.picture.url}}" 
+                        alt="{{product.name}}">
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+                    <div>
+                        <h1 class="my_prod_title">{{product.name}}</h1>
+                        <p>€{{product.price}}</p>
+                        <hr class="rounded">
+                        <p class="my_title">Product Description:</p>
+                        <p class="text-justify my_prod_text">{{product.description}}</p>
+                        <hr class="rounded">
+                        {% if product.stock == 0%}
+                            <p class="text-justify my_prod_text"><b>Out of Stock</b></p>
+                            <!-- Add a option to buy to cart later on after we implement it-->
+                        {% endif %}
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

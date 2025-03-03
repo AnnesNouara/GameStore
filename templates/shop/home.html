@@ -8,6 +8,11 @@
     </ol>
   </nav>
   {% if user.is_authenticated %}
+  {% if is_manager %}
+        <a href="{% url 'pages:game_create' %}">Create Game</a>
+        <br>
+  {% endif %}
+  <br>
 <section id="HomeBox1">
   <h1 class = "text-center">
     Welcome to <b>Pulse</b>, {{user.username}}
@@ -24,9 +29,22 @@
     <h3 class = "text-center">
         Recommended for you
     </h3>
-    <!-- User favourite genre here -->
+    {% for product in prods %}
+    <div class="my_bottom_margin col-9 col-lg-4 col-sm-12 col-md-4">
+        <div class="card text-center" style="min-width:18rem;">
+            {% if product.picture %}
+                <img class="card-img-top" src="{{ product.picture.url }}" alt=""></a>
+            {% endif %}
+            <div class="price">
+              <a href="{{product.get_absolute_url}}"><h4>{{product.name}}</h4></a>
+                <br>
+                <p>€{{product.price}}</p>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+<div class="mx-auto">
 </section>
-
   {% else %}
 <h1 class="text-center">
     You aren't logged in
