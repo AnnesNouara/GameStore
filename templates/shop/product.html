@@ -17,14 +17,10 @@
             <br>
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-6 text-center">
-                    {% if product.image %}
                     <div style="min-width:14rem; max-width:14rem;">
                         <img  style="max-width:40rem;"src="{{product.picture.url}}" 
                         alt="{{product.name}}">
                     </div>
-                    {% else %}
-                    <p> No image avaliable </p>
-                    {% endif %}
                 </div>
                 <div class="col-12 col-sm-12 col-md-12 col-lg-6">
                     <div>
@@ -35,9 +31,10 @@
                         <p class="my_title">Product Description:</p>
                         <p class="text-justify my_prod_text">{{product.description}}</p>
                         <hr class="rounded">
+                        <a class="btn btn-secondary" href="{% url 'cart:add_cart' product.id%}">Add to cart</a>
                         {% if product.stock == 0%}
                             <p class="text-justify my_prod_text"><b>Out of Stock</b></p>
-                            <!-- Add a option to buy to cart later on after we implement it-->
+            
                         {% endif %}
                     </div>
                     <br>

@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    {% if not cart_items %}
+        <div>
+            <div class="text-center">
+                <br>
+                <h1 class="text-center my_title">
+                    Your shopping cart is empty
+                </h1>
+                <br>
+                <p class="text-center">
+                    Please click <a href="{% url 'pages:all_products' %}">here</a> to continue shopping.
+                </p>
+            </div>
+        </div>
+    {% else %}
+        <div>
+            <div class="text-center">
+                <br>
+                <h1 class="text-center my_title">
+                Your shopping cart
+                </h1>
+                <br>
+            </div>
+        </div>
+        <div class="row mx-auto">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-6 text-center">
+                <table class="table my_custom_table">
+                    <thead class="my_custom_thead">
+                        <tr>
+                            <th colspan="5">
+                                Your Bag
+                            </th>
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        {% for cart_item in cart_items %}
+                            <tr>
+                                <td>
+                                    <a href="{{cart_item.product.get_absolute_url}}"><img
+src="{{cart_item.product.picture.url}}"
+                                    alt="" class="float-left rounded custom_image"></a>
+                                </td>
+                                <td class="text-left">
+                                    {{cart_item.product.name}}
+                                    <br>
+                                    Unit Price: €{{cart_item.product.price}}
+                                    <br>
+                                    Qty: {{cart_item.quantity}} x €{{cart_item.product.price}}
+                                </td>
+
+                                <td>
+                                    €{{cart_item.sub_total}}
+                                </td>
+                                {% if cart_item.quantity < cart_item.product.stock %}
+                                    <div class="icon">
+                                        <td>
+                                            <a href="{% url 'cart:add_cart' cart_item.product.id %}" ><img src="{% static 'images/add-to-cart.png' %}" alt="" height="20rem" width="20rem"></a>&nbsp;
+                                            <a href="{% url 'cart:cart_remove' cart_item.product.id %}" ><img src="{% static 'images/cart-minus.png' %}" alt="" height="20rem" width="20rem"></a>&nbsp;
+                                            <a href="{% url 'cart:full_remove' cart_item.product.id %}" ><img  src="{% static 'images/cartbin.png' %}" alt="" height="20rem" width="20rem"></a>
+                                        </td>
+                                    </div>
+                                {% else %}
+                                    <td>
+                                        &nbsp;<a href="{% url 'cart:cart_remove' cart_item.product.id %}"><img src="{% static 'images/cart-minus.png' %}" alt="" height="20rem" width="20rem"></a>&nbsp;
+                                        <a href="{% url 'cart:full_remove' cart_item.product.id %}"><img src="{% static 'images/cartbin.png' %}" alt="" height="20rem" width="20rem"></a>
+                                    </td>
+                                    <td></td>
+                                {% endif %}
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                <div id="delivery">
+                    <tr>
+                    <strong><th>DELIVERY INFORMATION</th></strong>
+                    </tr>
+                    <hr class="rounded">
+                    <h5>Free Shipping:</h5>
+                        <p>Free shipping on all orders over £50</p>
+
+                     <h5>Standard Shipping:</h5>
+                    <td>
+                    <strong>
+                        <p>Standard:</p>
+                    </strong>
+                    <p>3 - 5 Working days </p>
+                    <strong>
+                        <p>Express:</p>
+                    </strong>
+                    <p>2 Working days</p>
+                    </td>
+
+                </div>
+
+            </div>
+            <div class="col-lg-6 text-center">
+                <table class="table my_custom_table">
+                    <thead class="my_custom_thead">
+                        <tr>
+                            <th>
+                                Checkout
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                Please review your shopping cart items before proceeding with the order payment.
+    
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td class="text-left">
+                            Your total is: <strong>€{{ total }}</strong>
+                            </td>
+                        </tr>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a class="btn btn-dark">Pay with card</a>
+                                <a href="{% url 'pages:all_products' %}" class="btn btn-dark btn-block payment">Continue Shopping</a>        
+                            </td>
+                    
+                        </tr>        
+               
+                        </div>
+                    </div>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Payment Form -->
+            </div>
+        </div>
+        <br>
+    {% endif %}
+{% endblock %}

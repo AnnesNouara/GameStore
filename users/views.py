@@ -26,7 +26,6 @@ class ManagerSignUpView(CreateView):
 
     def form_valid(self, form):
         response = super().form_valid(form)
-
         customer_group, created =Group.objects.get_or_create(name='Manager')
         self.object.groups.add(customer_group)
         return response
@@ -34,7 +33,7 @@ class ManagerSignUpView(CreateView):
 class ProfileEditView(UpdateView):
     model = Profile
     template_name = 'registration/edit_profile.html'
-    fields = ['Developer']
+    fields = ['Developer', 'Category']
 
 class ProfilePageView(DetailView):
     model = Profile
