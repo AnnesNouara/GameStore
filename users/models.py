@@ -16,6 +16,7 @@ class Profile(models.Model):
     )
     date_of_birth = models.DateField(blank=True, null=True)
     Developer = models.ForeignKey(Developer, on_delete=models.CASCADE, null=True)
+    
 
     def __str__(self):
         return str(self.user) 

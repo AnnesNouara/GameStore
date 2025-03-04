@@ -17,15 +17,20 @@
             <br>
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-6 text-center">
+                    {% if product.image %}
                     <div style="min-width:14rem; max-width:14rem;">
                         <img  style="max-width:40rem;"src="{{product.picture.url}}" 
                         alt="{{product.name}}">
                     </div>
+                    {% else %}
+                    <p> No image avaliable </p>
+                    {% endif %}
                 </div>
                 <div class="col-12 col-sm-12 col-md-12 col-lg-6">
                     <div>
                         <h1 class="my_prod_title">{{product.name}}</h1>
                         <p>€{{product.price}}</p>
+                        <p> {{product.category.name}}</p>
                         <hr class="rounded">
                         <p class="my_title">Product Description:</p>
                         <p class="text-justify my_prod_text">{{product.description}}</p>
