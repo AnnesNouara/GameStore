@@ -52,11 +52,11 @@ class Product(models.Model):
     description = models.TextField(blank=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    picture = models.ImageField(upload_to='covers/', blank=True)
+    picture = models.ImageField(upload_to='covers/', blank=True, null=True)
     stock_quantity = models.IntegerField()
     available = models.BooleanField(default=True)
     created = models.DateTimeField(auto_now_add=True, blank = True, null = True)
-    updated = models.DateTimeField(auto_now=True, blank = True, null = True)
+    updated = models.DateTimeField(auto_now=True, blank = True)
     developer = models.ForeignKey(Developer, on_delete=models.CASCADE, null = True)
     
     class Meta:
