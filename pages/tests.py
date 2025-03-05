@@ -14,7 +14,7 @@ class ProductModelTest(TestCase):
             description = "Goated game",
             category = self.category,
             price = 15.00,
-            stock_quantity = 5
+            stock = 5
         )
     def test_product_creation(self):
         self.assertEqual(self.product.name, 'Dishonored 2')
@@ -41,7 +41,7 @@ class ShopViewsTest(TestCase):
             description = 'TestDesc',
             category = self.category,
             price = 49.99,
-            stock_quantity = 5,
+            stock = 5,
             available = True,
             picture = SimpleUploadedFile(name="test",content=b"",content_type='media/covers/Use_Case.jpg')
         )
@@ -67,7 +67,7 @@ class ShopUrlTestCase(TestCase):
             description = 'TestDesc',
             category = self.category,
             price = 1.99,
-            stock_quantity = 5
+            stock = 5
             )
     
     def test_home_url(self):
