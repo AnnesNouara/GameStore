@@ -5,6 +5,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.conf import settings
 from django.urls import reverse
 from decimal import Decimal
+import stripe
 
 def _cart_id(request):
     cart = request.session.session_key
@@ -37,11 +38,46 @@ def cart_detail(request, total=0, counter=0, cart_items = None):
             counter += cart_item.quantity
     except ObjectDoesNotExist:
         pass
-    return render(request, 'cart.html',
-                    {'cart_items':cart_items,
-                    'total':total,
-                    'counter':counter
-                    })
+    stripe.api_key = settings.STRIPE_SECRET_KEY
+    stripe_total = int(total * 100) # Convert total to cents
+    description = 'Online Shop - New Order'
+
+    if request.method == 'POST':
+        try:
+            # Create a new Stripe Checkout session
+            checkout_session = stripe.checkout.Session.create(
+                payment_method_types=['card'],
+                line_items=[{
+                    'price_data': {
+                        'currency': 'eur',
+                        'product_data': {
+                            'name': 'Order from Pulse Shop',
+                        },
+                        'unit_amount': stripe_total,
+                    },'quantity': 1,
+                }],
+                mode='payment',
+                billing_address_collection='required',
+                shipping_address_collection={},
+                payment_intent_data={'description': description},
+                success_url=request.build_absolute_uri(reverse('pages:all_products')),
+                cancel_url=request.build_absolute_uri(reverse('cart:cart_detail')),
+            )
+            # Redirect to Stripe Checkout
+            return redirect(checkout_session.url, code=303)
+        except Exception as e:
+            return render(request, 'cart.html', {
+                'cart_items': cart_items,
+                'total': total,
+                'counter': counter,
+                'error': str(e), # Display error if there's an issue with Stripe
+                })
+    return render(request, 'cart.html', {
+        'cart_items': cart_items,
+        'total': total,
+        'counter': counter,
+    })
+# Render the template with an error message
 
  
 
