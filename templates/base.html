@@ -12,9 +12,9 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
       <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'pages:all_products' %}">Pulse</a>
+        <a class="navbar-brand" href="{% url 'pages:all_products' %}" style="font-family: fantasy; font-size: 2rem;" >Pulse</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -27,7 +27,7 @@
           <div class="mr-auto">
             <ul class="navbar-nav">
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> {{ user.username }} </a>
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> <img src="{% static 'images/user.png' %}" alt="" height="40rem" width="40rem"> </a>
                 <ul class="dropdown-menu dropdown-menu-end">
 
                   {% if user.is_authenticated %}
@@ -68,6 +68,17 @@
               >
             </form>
           </div>
+          {% endif %}
+        </div>
+        <div class="shop">
+          {% if item_count > 0 %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'cart:cart_detail' %}"><img src="{% static 'images/shopping-bag.png' %}" alt="Shopping Cart" height="40rem" width="45rem">({{item_count}})</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'cart:cart_detail' %}"><img src="{% static 'images/shopping-bag.png' %}" alt="Shopping Cart" height="40rem" width="45rem"></a>
+          </li>
           {% endif %}
         </div>
       </div>

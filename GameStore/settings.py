@@ -70,6 +70,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'users.context_processors.user_groups',
+                'cart.context_processors.counter',
             ],
         },
     },
@@ -142,3 +143,6 @@ MEDIA_ROOT = str(BASE_DIR.joinpath('media'))
 
 LOGIN_REDIRECT_URL = 'pages:all_products'
 LOGOUT_REDIRECT_URL = 'pages:all_products'
+
+STRIPE_SECRET_KEY = 'sk_test_51QKlXYApqbevSBfBC19YqFg9oD6CWN8bJacHpwyy4lQJZe73QTwmP631ppXX0VOrdvZwziROWxxHQhgUGOHXUU9X00Cw0STVX7'
+STRIPE_PUBLISHABLE_KEY = 'pk_test_51QKlXYApqbevSBfBFyeitSiX7IDKCqItGUaGhTlPz4qCqJnNyPZs7bzoLNXEb6DVl5OJ6yc0B5GEBhkvC2agp7We00O6RLFeK6'
