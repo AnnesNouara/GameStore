@@ -38,7 +38,6 @@ class ProfileModelTest(TestCase):
         self.category = Category.objects.create(name='Action')
         
         self.profile = Profile.objects.create(
-            
             user=self.user,
             date_of_birth = '2001-12-12',
             Developer = self.developer,
