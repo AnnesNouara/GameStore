@@ -52,6 +52,7 @@ class Product(models.Model):
     description = models.TextField(blank=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
+    age_rating = models.IntegerField(blank = True, null=True)
     picture = models.ImageField(upload_to='covers/', blank=True, null=True)
     stock = models.IntegerField()
     available = models.BooleanField(default=True)

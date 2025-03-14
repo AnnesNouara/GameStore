@@ -33,17 +33,19 @@
       <div class="row mx-auto">
     {% for product in prods %}
     <br>
-    <div class="my_bottom_margin col-9 col-lg-4 col-sm-12 col-md-4">
-        <div class="card text-center" style="min-width:10rem; max-width:10rem; ">
+    <div class="my_bottom_margin col-6 col-lg-3 col-sm-12 col-md-6">
+      <a href="{{product.get_absolute_url}}" style="text-decoration: none;">
+        <div class="card text-center">
             {% if product.picture %}
-            <a href="{{product.get_absolute_url}}"><img class="card-img-top" src="{{ product.picture.url }}" alt=""></a>
+              <img class="card-img-top" src="{{ product.picture.url }}" alt="">
             {% endif %}
-            <div class="price">
+            <div class="price flex-grow-1">
               <h4>{{product.name}}</h4>
               <p> {{product.category.name}} </p>
                 <p>€{{product.price}}</p>
             </div>
         </div>
+      </a>
     </div>
 {% endfor %}
   </div>
