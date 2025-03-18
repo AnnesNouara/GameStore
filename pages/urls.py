@@ -10,5 +10,5 @@ urlpatterns = [
     path('<uuid:category_id>/<uuid:product_id>/', views.product_detail, name = 'product_detail'),
     path('<uuid:category_id>/<uuid:product_id>/edit', GameEditView.as_view(), name = 'game_edit'),
     path('<uuid:category_id>/<uuid:product_id>/delete', GameDeleteView.as_view(), name = 'game_delete'),
-    path('new/', GameCreateView.as_view(), name = 'game_create')
+    path('new/', GameCreateView.as_view(), name = 'game_create'),
 ]
