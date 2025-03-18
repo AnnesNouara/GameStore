@@ -42,7 +42,7 @@ def prod_list(request, category_id=None):
         category = get_object_or_404(Category, id=category_id)
         products = Product.objects.filter(category=category, available = True)
     
-    paginator = Paginator(products, 6)
+    paginator = Paginator(products, 4)
     try:
         page = int(request.GET.get('page','1'))
     except:

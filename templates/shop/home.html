@@ -29,7 +29,7 @@
     <h3 class = "text-center">
         Recommended for you
     </h3>
-    <div class="container" id="jump">
+    <div class="container">
       <div class="row mx-auto">
     {% for product in prods %}
     <br>
@@ -49,7 +49,16 @@
     </div>
 {% endfor %}
   </div>
-<div class="mx-auto">
+  {% if prods.paginator.num_pages > 1 %}
+  <hr>
+  <div class="mx-auto">
+  <div class ="text-center">
+    {% for pg in prods.paginator.page_range %}
+    <a href="?page={{pg}}" class = "btn btn-light btn=sm
+    {% if products.number == pg %} active {% endif %}">{{pg}}</a>
+    {% endfor %}
+{% endif %}
+</div>
 </section>
   {% else %}
 <h1 class="text-center">
