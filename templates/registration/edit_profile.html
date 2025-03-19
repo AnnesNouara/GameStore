@@ -18,10 +18,10 @@
     <br>
         Username: {{ user.profile.user }}
     <br>
-        Date Of Birth: {{ user.profile.date_of_birth }}
+        Age: {{ user.age }}
     <br>
     <hr class="rounded">
-    <strong><p>Note: You cannot change your username or DOB.</p></strong>
+    <strong><p>Note: You cannot change your username</p></strong>
     <form method="POST">
         {% csrf_token %}
        <strong>Favourites: {{ form.as_p }}</strong>
