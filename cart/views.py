@@ -179,7 +179,7 @@ def create_order(request):
 
             except Exception as e:
                 return redirect("pages:all_products")
-            return redirect("pages:all_products")
+            return redirect("order:thanks", order_details.id)
         
     except ValueError as ve:
         print(f"Error: {ve}")
