@@ -17,6 +17,10 @@
     padding: 5%;
 }
 
+#blurry {
+    filter: blur(8.1px);
+}
+
 /****Cart Page****/
 .my_custom_table {
     min-width: 400px;
