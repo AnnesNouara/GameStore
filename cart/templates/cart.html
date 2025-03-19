@@ -114,11 +114,51 @@ src="{{cart_item.product.picture.url}}"
                             </td>
 
                         </tr>
-                        <tr>
-                            <td class="text-left">
-                            Your total is: <strong>€{{ total }}</strong>
-                            </td>
-                        </tr>
+                        <div class="vouchers">
+                            {% if voucher %}
+                            <tr class="subtotal">
+                            <td>Total</td>
+                            <td colspan="4"></td>
+                            <td class="num">€{{ total|floatformat:"2" }}</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                "{{ voucher.code }}" voucher
+                                ({{ voucher.discount }}% off)
+                                </td>
+                                <td colspan="4"></td>
+                                <td class="num neg">
+                                - €{{ discount|floatformat:"2" }}
+                                </td>
+                            </tr>
+                            <tr class="total">
+                                <td>Total</td>
+                                <td colspan="4"></td>
+                                <td class="num">
+                                        €{{ new_total|floatformat:"2" }}
+                                </td>
+                            </tr>
+                            {% else %}
+                                    <tr class="total">
+                                        <td>Total</td>
+                                        <td colspan="4"></td>
+                                        <td class="num">
+                                        €{{ total|floatformat:"2" }}
+                                        </td>
+                                    </tr>
+                                {% endif %}
+                            </tbody>
+                        </table>
+                    <div id="promo">
+                        <p>Do you have a promo code?</p>
+                        <form action="{% url 'vouchers:apply' %}" method="post">
+                            {{ voucher_apply_form }}
+                            <br>
+                            <br>
+                            <input type="submit" value="Apply">
+                            {% csrf_token %}
+                            <hr class="rounded">
+                        </form>
                         </tr>
                         <tr>
                             <td>
