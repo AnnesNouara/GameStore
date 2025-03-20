@@ -12,7 +12,7 @@ customer_order})
 class orderHistory(LoginRequiredMixin, View):
     def get (self, request):
         if request.user.is_authenticated:
-            email = str(request.user.email)
+            email = request.user.email
             order_details = Order.objects.filter(emailAddress=email)
         return render(request, 'orders_list.html', {'order_details':
 order_details})
