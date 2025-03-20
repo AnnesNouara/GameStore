@@ -108,6 +108,10 @@ def cart_detail(request, total=0, counter=0, cart_items = None):
         'cart_items': cart_items,
         'total': total,
         'counter': counter,
+        'voucher_apply_form':voucher_apply_form,
+        'new_total':new_total,
+        'voucher': voucher,
+        'discount':discount
 })
 def cart_remove(request, product_id):
     cart= Cart.objects.get(cart_id=_cart_id(request))
