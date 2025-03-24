@@ -27,22 +27,7 @@
   <div class="container">
     <div class="row mx-auto">
   {% for product in prods%}
-      {% if user.profile.Developer == product.developer and user.profile.Category == product.Category and user.age > product.age_rating %}
-      <div class="my_bottom_margin col-6 col-lg-3 col-sm-12 col-md-6">
-        <a href="{{product.get_absolute_url}}" style="text-decoration: none;">
-          <div class="card text-center h-100 d-flex flex-column">
-              {% if product.picture %}
-                <img class="card-img-top" src="{{ product.picture.url }}" alt="{{product.name}}" style="width: 100%; height:200px; object-fit: cover;">
-              {% endif %}
-              <div class="price flex-grow-1 d-flex flex-column justify-content-end">
-                <h4>{{product.name}}</h4>
-                <p> {{product.category.name}} </p>
-                  <p>€{{product.price}}</p>
-              </div>
-          </div>
-        </a>
-      </div>
-      {% elif user.profile.Category == product.category and user.age >= product.age_rating %}
+      {% if user.profile.Developer == product.developer or user.profile.Category == product.category %}
       <div class="my_bottom_margin col-6 col-lg-3 col-sm-12 col-md-6">
         <a href="{{product.get_absolute_url}}" style="text-decoration: none;">
           <div class="card text-center h-100 d-flex flex-column">
@@ -72,8 +57,8 @@
   {% if products.number == pg %} active {% endif %}">{{pg}}</a>
   {% endfor %}
 {% endif %}
-</div>
 </section>
+
 
 {% else %}
 <section id="HomeBox1">
