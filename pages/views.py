@@ -33,8 +33,8 @@ class GameDeleteView(ManagerRequiredMixin,DeleteView):
     
     def get_object(self, queryset=None):
         return self.model.objects.get(id=self.kwargs['product_id'])
-
-def prod_list(request, category_id=None):
+    
+def home_list(request, category_id=None):
     category = None
     products = Product.objects.filter(available = True)
         
@@ -53,6 +53,27 @@ def prod_list(request, category_id=None):
         products = paginator.page(paginator.num_pages)
         
     return render(request, 'shop/home.html',{'category':category, 'prods':products})
+
+
+def prod_list(request, category_id=None):
+    category = None
+    products = Product.objects.filter(available = True)
+        
+    if category_id:
+        category = get_object_or_404(Category, id=category_id)
+        products = Product.objects.filter(category=category, available = True)
+    
+    paginator = Paginator(products, 8)
+    try:
+        page = int(request.GET.get('page','1'))
+    except:
+        page = 1
+    try:
+        products = paginator.page(page)
+    except (EmptyPage,InvalidPage):
+        products = paginator.page(paginator.num_pages)
+        
+    return render(request, 'shop/all_products.html',{'category':category, 'prods':products})
 
 def product_detail(request, category_id, product_id):
     product = get_object_or_404(Product, category_id=category_id, id=product_id)
