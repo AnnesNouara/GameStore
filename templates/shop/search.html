@@ -4,6 +4,11 @@
 Search 
 {% endblock title %}
 {% block content %}
+<br>
+<ol class="breadcrumb">
+  <li class="breadcrumb-item"><a href="{% url 'pages:homepage' %}" aria-current="page">Home</a></li>
+  <li class="breadcrumb-item active" aria-current="page">Search{{product.name}}</li>
+</ol>
 <div>
 <p class="text-center">You have searched for: <b>"{{ query }}"</b></p>
 </div>

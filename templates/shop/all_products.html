@@ -1,33 +1,45 @@
 {% extends 'base.html' %}
 {% block content %}
-<title>{% block title %} Pulse - Home {% endblock title %}</title>
+<title>{% block title %} Pulse - Products {% endblock title %}</title>
 <br> 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item active" aria-current="page">Home</li>
-    </ol>
-  </nav>
-  {% if user.is_authenticated %}
+        <li class="breadcrumb-item"><a href="{% url 'pages:homepage' %}" aria-current="page">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Product</li>
+      </ol>
+  {% if is_manager %}
+        <a href="{% url 'pages:game_create' %}">Create Game</a>
+        <br>
+  {% endif %}
+
   <br>
 <section id="HomeBox1">
   <h1 class = "text-center">
-    Welcome to <b>Pulse</b>, {{user.username}}
-  </h1>
+        Here are our products!
+    </h1>
 </section>
 
 <section id="HomeBox3">
-  <h3 class= "text-center">
-    We think you might like
-  </h3>
-  {% if user.profile.Category == None and user.profile.Developer == None %}
-    <h4 class= "text-center">
-      Sorry, you don't have your preferences configured
-    </h4>
-  {% else %}
-  <div class="container">
-    <div class="row mx-auto">
-  {% for product in prods%}
-      {% if user.profile.Developer == product.developer and user.profile.Category == product.Category and user.age > product.age_rating %}
+    <div class="container">
+        <div class="row mx-auto">
+      {% for product in prods %}
+      {% if user.age < product.age_rating %}
+      <div class="my_bottom_margin col-6 col-lg-3 col-sm-12 col-md-6">
+        <a style="text-decoration: none;">
+          <div class="card text-center h-100 d-flex flex-column">
+              {% if product.picture %}
+                <img class="card-img-top blurry" src="{{ product.picture.url }}" alt="{{product.name}}" id = "blurry" style="width: 100%; height:200px; object-fit: cover;">
+              {% endif %}
+              <div class="price flex-grow-1 d-flex flex-column justify-content-end">
+                <h4>{{product.name}}</h4>
+                <p> {{product.category.name}} </p>
+                  <p> This game is {{product.age_rating}}+<p>
+              </div>
+          </div>
+        </a>
+      </div>
+      {% else %}
+      <br>
       <div class="my_bottom_margin col-6 col-lg-3 col-sm-12 col-md-6">
         <a href="{{product.get_absolute_url}}" style="text-decoration: none;">
           <div class="card text-center h-100 d-flex flex-column">
@@ -42,26 +54,8 @@
           </div>
         </a>
       </div>
-      {% elif user.profile.Category == product.category and user.age >= product.age_rating %}
-      <div class="my_bottom_margin col-6 col-lg-3 col-sm-12 col-md-6">
-        <a href="{{product.get_absolute_url}}" style="text-decoration: none;">
-          <div class="card text-center h-100 d-flex flex-column">
-              {% if product.picture %}
-                <img class="card-img-top" src="{{ product.picture.url }}" alt="{{product.name}}" style="width: 100%; height:200px; object-fit: cover;">
-              {% endif %}
-              <div class="price flex-grow-1 d-flex flex-column justify-content-end">
-                <h4>{{product.name}}</h4>
-                <p> {{product.category.name}} </p>
-                  <p>€{{product.price}}</p>
-              </div>
-          </div>
-        </a>
-      </div>
-  {% endif %}
+      {% endif %}
   {% endfor %}
-  {% endif %}
-    </div>
-  </div>
 </div>
 {% if prods.paginator.num_pages > 1 %}
 <hr>
@@ -75,18 +69,5 @@
 </div>
 </section>
 
-{% else %}
-<section id="HomeBox1">
-  <h1 class = "text-center">
-    Welcome to <b>Pulse</b>, Guest!
-  </h1>
-</section>
-<br>
-<section id="HomeBox1">
-  <h1 class = "text-center">
-    Please take a look in our Products page!
-  </h1>
-</section>
 
-  {% endif %}
-  {% endblock content%}
+{% endblock content%}
