@@ -36,16 +36,18 @@ class GameDeleteView(ManagerRequiredMixin,DeleteView):
     
 def home_list(request, category_id=None):
     category = None
-    user = request.user
-    
     products = Product.objects.filter(available = True)
         
     if category_id:
         category = get_object_or_404(Category, id=category_id)
         products = Product.objects.filter(category=category, available = True)
     
-    products = products.filter(developer=user.profile.Developer) | products.filter(category=user.profile.Category)
-    products = products.distinct()
+    
+    if request.user.is_authenticated:
+        user = request.user
+        products = products.filter(developer=user.profile.Developer) | products.filter(category=user.profile.Category)
+        products = products.distinct()
+    
     paginator = Paginator(products, 4)
     try:
         page = int(request.GET.get('page','1'))
