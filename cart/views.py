@@ -103,7 +103,7 @@ def cart_detail(request, total=0, counter=0, cart_items = None):
                 'discount': discount,
                 'error': str(e), # Display error if there's an issue with Stripe
             })
-        
+        succ
     return render(request, 'cart.html', {
         'cart_items': cart_items,
         'total': total,
