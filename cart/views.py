@@ -53,7 +53,7 @@ def cart_detail(request, total=0, counter=0, cart_items = None):
     voucher_apply_form = VoucherApplyForm()
 
     try:
-        voucher_id = request.session.get('voucher_id')
+        voucher_id = request.session.get('voucher_id') 
         voucher = Voucher.objects.get(id=voucher_id)
         if voucher != None:
             discount = (total*(voucher.discount/Decimal('100')))
@@ -103,7 +103,6 @@ def cart_detail(request, total=0, counter=0, cart_items = None):
                 'discount': discount,
                 'error': str(e), # Display error if there's an issue with Stripe
             })
-        succ
     return render(request, 'cart.html', {
         'cart_items': cart_items,
         'total': total,
@@ -192,7 +191,7 @@ def create_order(request):
             cart = Cart.objects.get(cart_id=_cart_id(request))
             cart_items = CartItem.objects.filter(cart=cart, active=True)
         except ObjectDoesNotExist:
-            return redirect("shop:all_products")
+            return redirect("pages:all_products")
         except Exception as e:
             print(f"Error: {e}")
             return redirect("pages:all_products")
@@ -226,7 +225,7 @@ def create_order(request):
                 oi.save()
                 empty_cart(request)
             except Exception as e:
-                return redirect("shop:all_products")
+                return redirect("pages:all_products")
         return redirect('order:thanks', order_details.id)
 
     except ValueError as ve:
