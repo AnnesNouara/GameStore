@@ -143,12 +143,6 @@ def empty_cart(request):
         pass
     return redirect('cart:cart_detail')
 
-from decimal import Decimal
-from django.shortcuts import get_object_or_404, redirect
-from django.core.exceptions import ObjectDoesNotExist
-import stripe
-from stripe.error import StripeError
-
 def create_order(request):
     try:
         session_id = request.GET.get('session_id')
