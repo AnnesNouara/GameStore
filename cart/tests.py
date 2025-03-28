@@ -47,19 +47,12 @@ class CartViewTests(TestCase):
         cart = Cart.objects.get(cart_id=self.client.session.session_key)
         cart_item = CartItem.objects.get(product=self.product, cart=cart)
         self.assertEqual(cart_item.quantity, 1)
-
-    def test_add_cart_quantity_limit(self):
-        response = self.client.get(reverse('cart:add_cart', args=[self.product.id]))
-        self.assertEqual(response.status_code, 302)
-        cart = Cart.objects.get(cart_id=self.client.session.session_key)
-        cart_item = CartItem.objects.get(product=self.product, cart=cart)
-        self.assertEqual(cart_item.quantity, 1)
     
     def test_add_cart_quantity_limit(self):
         response = self.client.get(reverse('cart:add_cart', args=[self.product.id]))
         self.assertEqual(response.status_code, 302)
         cart = Cart.objects.get(cart_id=self.client.session.session_key)
-        cart_item = CartItem.objects.get(products=self.product, cart=cart)
+        cart_item = CartItem.objects.get(product=self.product, cart=cart)
         self.assertEqual(cart_item.quantity, 1)
         response = self.client.get(reverse('cart:add_cart', args=[self.product.id]))
         self.assertEqual(response.status_code, 302)
