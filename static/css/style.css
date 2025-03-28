@@ -51,3 +51,15 @@
 .shop li{
 	list-style: none;
 }
+
+.bg-royalblue{
+    background-color: #03256c;
+}
+
+body{
+    background-color: #F1EFFA;
+}
+
+.prodcolor{
+    background-color: #c9c1eb;
+}
