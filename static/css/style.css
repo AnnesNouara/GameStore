@@ -30,7 +30,6 @@
     font-weight: normal;
     text-transform: uppercase;
     letter-spacing: .2em;
-    background-color: #f8f9fa!important;
 }
 .custom_image {
     width: 100px;
@@ -41,11 +40,9 @@
 }
 .custom_icon {
     text-decoration: none;
-    color: #868e96 !important;
+    
 }
-    .my_custom_button {
-    margin-top: 5px;
-}
+
     
 
 .shop li{
@@ -59,7 +56,24 @@
 body{
     background-color: #F1EFFA;
 }
-
-.prodcolor{
-    background-color: #c9c1eb;
+.cart_table{
+    border-radius: 2em;
 }
+
+.test{
+    background-color: aliceblue;
+}
+:hover{
+    background-color: #F1EFFA;
+}
+.payment {
+	background-color: #03256c !Important;
+	color: white;
+	font-size: 16px;
+	border: none;;
+	border-radius: 20px;
+	text-align: center;
+	text-decoration: none;
+	width: 80%;
+	margin-bottom: 10px;
+	}
