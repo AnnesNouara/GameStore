@@ -5,6 +5,11 @@ Pulse - Advanced Search
 {% endblock title %}
 {% block content %}
 <br>
+<ol class="breadcrumb">
+  <li class="breadcrumb-item"><a href="{% url 'pages:homepage' %}" aria-current="page">Home</a></li>
+  <li class="breadcrumb-item"><a href="{% url 'pages:all_products' %}" aria-current="page">Products</a></li>
+  <li class="breadcrumb-item active" aria-current="page">Filter</li>
+</ol>
 
 <main role="main" class="container">
 
@@ -13,12 +18,29 @@ Pulse - Advanced Search
         <div class="form-row">
             <div class="form-group col-12">
                 <div class="input-group">
-                    <input class="form-control py-2 border-right-0 border" type="search" name="title_contains" placeholder="Title contains..." />
-                    <span class="input-group-append">
-                    </span>
+                    <input class="form-control py-2 border-right-0 border" type="search" name="title_contains" placeholder="Game..." />
+                    <span class="input-group-append"> </span>
                 </div>
             </div>        
         </div>
+        <br>
+        <div class="form-row">
+          <div class="form-group col-12">
+              <div class="input-group">
+                  <input class="form-control py-2 border-right-0 border" type="search" name="dev_exact" placeholder="Developer...." />
+                  <span class="input-group-append"></span>
+              </div>
+          </div>        
+      </div>
+      <br>
+      <div class="form-row">
+        <div class="form-group col-12">
+            <div class="input-group">
+                <input class="form-control py-2 border-right-0 border" type="search" name="genre_exact" placeholder="Genre...." />
+                <span class="input-group-append"></span>
+            </div>
+        </div>        
+    </div>
         <br>
         <button type="submit" class="btn btn-primary">Search</button>
     </form>
@@ -28,14 +50,18 @@ Pulse - Advanced Search
     <div class="row">
         <ul>
           {% for product in queryset %}
+          {% if user.age >= product.age_rating%}
         <a href="{{product.get_absolute_url}}" style="text-decoration: none;">
             <ul>
+              <img style="min-width:6rem; max-width:6rem;" src="{{ product.picture.url }}" alt="{{product.name}}">
             Game: {{ product.name }} |
             <span>Developer: {{ product.developer.name }}</span> |
             <span>Genre: {{ product.category.name }}</span> |
+            <span>Price: €{{ product.price }}</span> |
+            <span>Age Rating: {{ product.age_rating }}+</span> |
             </ul>
             <hr />
-
+            {% endif %}
             {% empty %}
             <p class="text-center"> Sorry, we couldn't find what you were looking for.</p>
             <p class="text-center"> Try filter through other prompts.</p>

@@ -43,8 +43,6 @@
     
 }
 
-    
-
 .shop li{
 	list-style: none;
 }
@@ -80,7 +78,12 @@ a:hover{
 	text-decoration: none;
 	width: 80%;
 	margin-bottom: 10px;
-	}
+}
+
+.my_bottom_margin{
+    margin-bottom: 15px;
+}
+
 #promo .button {
         background-color: #03256c;
         color: #ffff;

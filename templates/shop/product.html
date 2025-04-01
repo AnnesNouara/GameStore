@@ -28,6 +28,7 @@
                 <div class="col-12 col-sm-12 col-md-12 col-lg-6">
                     <div>
                         <h1 class="my_prod_title">{{product.name}}</h1>
+                        <br>
                         <p>€{{product.price}}</p>
                         <p>Genre: {{product.category.name}}</p>
                         <p>Age Rating: {{product.age_rating}}+</p>
@@ -37,11 +38,13 @@
                         <p class="text-justify my_prod_text">{{product.description}}</p>
                         {% if user.is_authenticated %}
                         <hr class="rounded">
-                        <a class="btn btn-secondary" href="{% url 'cart:add_cart' product.id%}">Add to cart</a>
-                        {% if product.stock == 0%}
-                            <p class="text-justify my_prod_text"><b>Out of Stock</b></p>
-            
+
+                        {% if product.stock <= 0 %}
+                        <p class="text-justify my_prod_text"><b>Out of Stock</b></p>
+                        {% else %}
+                            <a class="btn btn-secondary" href="{% url 'cart:add_cart' product.id%}">Add to cart</a>
                         {% endif %}
+
                         {% endif %}
                     </div>
                     <br>
