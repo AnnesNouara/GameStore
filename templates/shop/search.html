@@ -16,6 +16,7 @@ Search
 <div class="container">
     <div class="row mx-auto">
   {% for product in prod_list %}
+  {% if user.age >= product.age_rating%}
   <br>
   <div class="my_bottom_margin col-6 col-lg-3 col-sm-12 col-md-6">
     <a href="{{product.get_absolute_url}}" style="text-decoration: none;">
@@ -31,6 +32,7 @@ Search
       </div>
     </a>
   </div>
+  {% endif %}
   {% empty %}
     <div class="row mx-auto">
     <p class="text-center my_search_text">0 results found.</p>

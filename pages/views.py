@@ -87,10 +87,18 @@ def product_detail(request, category_id, product_id):
 
 def filter_view(request):
     qs = Product.objects.all()
-    title_contains_query = request.GET.get('title_contains')
+    dev_contains_query = request.GET.get('Dev_exact','')
+    title_contains_query = request.GET.get('title_contains','')
+    genre_exact_query = request.GET.get('genre_exact','')
+    
 
     if title_contains_query != '' and title_contains_query is not None:
         qs = qs.filter(name__icontains=title_contains_query)
+    elif dev_contains_query != '' and dev_contains_query is not None:
+        qs = qs.filter(developer__name__icontains=dev_contains_query)
+    elif genre_exact_query != '' and dev_contains_query is not None:
+        qs = qs.filter(category__name__icontains=genre_exact_query)
+        
 
     context = {
         'queryset':qs
