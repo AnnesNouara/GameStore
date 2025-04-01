@@ -87,9 +87,13 @@ def product_detail(request, category_id, product_id):
 
 def filter_view(request):
     qs = Product.objects.all()
-    dev_contains_query = request.GET.get('Dev_exact','')
+    dev_contains_query = request.GET.get('dev_exact','')
     title_contains_query = request.GET.get('title_contains','')
     genre_exact_query = request.GET.get('genre_exact','')
+    price_count_min = request.GET.get('price_min','')
+    price_count_max = request.GET.get('price_max','')
+    age_min = request.GET.get('min_age','')
+    age_max = request.GET.get('max_age','')
     
 
     if title_contains_query != '' and title_contains_query is not None:
@@ -98,6 +102,15 @@ def filter_view(request):
         qs = qs.filter(developer__name__icontains=dev_contains_query)
     elif genre_exact_query != '' and dev_contains_query is not None:
         qs = qs.filter(category__name__icontains=genre_exact_query)
+    
+    if  price_count_min != '' and price_count_min is not None:
+        qs = qs.filter(price__gte=price_count_min) 
+    
+    if  price_count_max != '' and price_count_max is not None:
+        qs = qs.filter(price__lt=price_count_max) 
+    
+    if age_min != '' and age_min is not None:
+        qs = qs.filter(age_rating__icontains=age_min)
         
 
     context = {
