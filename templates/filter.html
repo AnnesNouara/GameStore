@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+Pulse - Advanced Search 
+{% endblock title %}
+{% block content %}
+<br>
+
+<main role="main" class="container">
+
+<h3>Filter Products</h3>
+      <form method="GET" action=".">
+        <div class="form-row">
+            <div class="form-group col-12">
+                <div class="input-group">
+                    <input class="form-control py-2 border-right-0 border" type="search" name="title_contains" placeholder="Title contains..." />
+                    <span class="input-group-append">
+                    </span>
+                </div>
+            </div>        
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+
+    <hr />
+
+    <div class="row">
+        <ul>
+          {% for product in queryset %}
+        <a href="{{product.get_absolute_url}}" style="text-decoration: none;">
+            <ul>
+            Game: {{ product.name }} |
+            <span>Developer: {{ product.developer.name }}</span> |
+            <span>Genre: {{ product.category.name }}</span> |
+            </ul>
+            <hr />
+
+            {% empty %}
+            <p class="text-center"> Sorry, we couldn't find what you were looking for.</p>
+            <p class="text-center"> Try filter through other prompts.</p>
+          {% endfor %}
+        </a>
+      </div>
+</main>
+{% endblock content %}

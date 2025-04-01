@@ -6,6 +6,7 @@ app_name = 'pages'
 
 urlpatterns = [
     path('', views.home_list, name = 'homepage'),
+    path('Filter/',views.filter_view, name="filter_search"),
     path('Products/', views.prod_list, name = 'all_products'),
     path('<uuid:category_id>/', views.prod_list, name = 'products_by_category'),
     path('<uuid:category_id>/<uuid:product_id>/', views.product_detail, name = 'product_detail'),

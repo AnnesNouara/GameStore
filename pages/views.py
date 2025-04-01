@@ -84,3 +84,17 @@ def prod_list(request, category_id=None):
 def product_detail(request, category_id, product_id):
     product = get_object_or_404(Product, category_id=category_id, id=product_id)
     return render(request, 'shop/product.html', {'product':product})
+
+
+def filter_view(request):
+    qs = Product.objects.all()
+    title_contains_query = request.GET.get('title_contains')
+
+    if title_contains_query != '' and title_contains_query is not None:
+        qs = qs.filter(name__icontains=title_contains_query)
+        
+    context = {
+        'queryset':qs
+    }
+
+    return render(request, 'filter.html', context)
