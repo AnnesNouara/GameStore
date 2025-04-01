@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
+<br>
+<div class="bg-white rounded" >
     {% if not cart_items %}
         <div>
             <div class="text-center">
@@ -14,6 +16,20 @@
                 </p>
             </div>
         </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
     {% else %}
         <div>
             <div class="text-center">
@@ -24,7 +40,7 @@
                 <br>
             </div>
         </div>
-        <div class="row mx-auto">
+        <div class=" row mx-auto">
             <div class="col-12 col-sm-12 col-md-12 col-lg-6 text-center">
                 <table class="table my_custom_table">
                     <thead class="my_custom_thead">
@@ -39,8 +55,7 @@
                         {% for cart_item in cart_items %}
                             <tr>
                                 <td>
-                                    <a href="{{cart_item.product.get_absolute_url}}"><img
-src="{{cart_item.product.picture.url}}"
+                                    <a href="{{cart_item.product.get_absolute_url}}"><img src="{{cart_item.product.picture.url}}"
                                     alt="" class="float-left rounded custom_image"></a>
                                 </td>
                                 <td class="text-left">
@@ -155,7 +170,7 @@ src="{{cart_item.product.picture.url}}"
                             {{ voucher_apply_form }}
                             <br>
                             <br>
-                            <input type="submit" value="Apply">
+                            <input type="submit" class="button" value="Apply">
                             {% csrf_token %}
                             <hr class="rounded">
                         </form>
@@ -165,7 +180,7 @@ src="{{cart_item.product.picture.url}}"
                                 <!-- Payment Form -->
                         <form action="{% url 'cart:cart_detail' %}" method="POST">
                             {% csrf_token %}
-                            <button class="btn btn-dark btn-block my_custom_button" type="submit">Pay with card</button>
+                            <button class="btn btn-dark btn-block payment" type="submit">Pay with card</button>
                         </form>
                         {% if error %}
                             <p style="color: red;">Error: {{ error }}</p>
@@ -185,4 +200,5 @@ src="{{cart_item.product.picture.url}}"
         </div>
         <br>
     {% endif %}
+</div>
 {% endblock %}

@@ -14,11 +14,11 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-royalblue">
       <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'pages:homepage' %}" style="font-family: fantasy; font-size: 2rem;" >Pulse</a>
-        <a class="navbar-brand" href="{% url 'pages:all_products' %}" style="font-family: fantasy; font-size: 2rem;" >Products</a>
+        <a class="navbar-brand" href="{% url 'pages:homepage' %}" ><img src="{% static 'images/pulse_logo-removebg-preview.png' %}" alt="" height="50rem"></a>
+        <a class="navbar-brand" href="{% url 'pages:all_products' %}" style="font-size: 1rem;" >Products</a>
         <form class="d-flex" action="{% url 'search_app:searchResult' %}" method="get">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="q">
-          <button class="btn vtn-secondary my-2 my-sm-0" type="submit">Search</button>
+          <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
         </form>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
