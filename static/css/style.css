@@ -63,11 +63,15 @@ body{
 .test{
     background-color: aliceblue;
 }
-:hover{
-    background-color: #F1EFFA;
+a:hover{
+    background-color: #6290C3;
+    max-width: max-content;
+    max-height: max-content;
+    border-radius: 1em;
+
 }
 .payment {
-	background-color: #03256c !Important;
+	background-color: #03256c !important;
 	color: white;
 	font-size: 16px;
 	border: none;;
@@ -77,3 +81,9 @@ body{
 	width: 80%;
 	margin-bottom: 10px;
 	}
+#promo .button {
+        background-color: #03256c;
+        color: #ffff;
+        border-radius: 20px;
+        width: 20%;
+    }

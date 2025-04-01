@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 <br>
-<div class="bg-white" >
+<div class="bg-white rounded" >
     {% if not cart_items %}
         <div>
             <div class="text-center">
@@ -170,7 +170,7 @@
                             {{ voucher_apply_form }}
                             <br>
                             <br>
-                            <input type="submit" value="Apply">
+                            <input type="submit" class="button" value="Apply">
                             {% csrf_token %}
                             <hr class="rounded">
                         </form>
