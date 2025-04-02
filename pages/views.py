@@ -1,4 +1,4 @@
-from .models import Category, Product
+from .models import Category, Product, Developer
 from django.core.paginator import Paginator, EmptyPage, InvalidPage
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
@@ -87,21 +87,20 @@ def product_detail(request, category_id, product_id):
 
 def filter_view(request):
     qs = Product.objects.all()
-    dev_contains_query = request.GET.get('dev_exact','')
+    categories = Category.objects.all()
+    developers = Developer.objects.all()
     title_contains_query = request.GET.get('title_contains','')
-    genre_exact_query = request.GET.get('genre_exact','')
     price_count_min = request.GET.get('price_min','')
     price_count_max = request.GET.get('price_max','')
     age_min = request.GET.get('min_age','')
     age_max = request.GET.get('max_age','')
     
+    category = request.GET.get('category','')
+    developer = request.GET.get('developer','')
+    
 
     if title_contains_query != '' and title_contains_query is not None:
         qs = qs.filter(name__icontains=title_contains_query)
-    elif dev_contains_query != '' and dev_contains_query is not None:
-        qs = qs.filter(developer__name__icontains=dev_contains_query)
-    elif genre_exact_query != '' and dev_contains_query is not None:
-        qs = qs.filter(category__name__icontains=genre_exact_query)
     
     if  price_count_min != '' and price_count_min is not None:
         qs = qs.filter(price__gte=price_count_min) 
@@ -110,11 +109,23 @@ def filter_view(request):
         qs = qs.filter(price__lt=price_count_max) 
     
     if age_min != '' and age_min is not None:
-        qs = qs.filter(age_rating__icontains=age_min)
+        qs = qs.filter(age_rating__gte=age_min)
+        
+    if age_max != '' and age_max is not None:
+        qs = qs.filter(age_rating__lt=age_max)
+        
+    if category != '' and category is not None:
+        qs = qs.filter(category__name=category)
+    
+    if developer != '' and developer is not None:
+        qs = qs.filter(developer__name=developer)
+    
         
 
     context = {
-        'queryset':qs
+        'queryset':qs,
+        'categories':categories,
+        'developers':developers
     }
 
     return render(request, 'filter.html', context)
