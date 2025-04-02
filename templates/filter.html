@@ -13,7 +13,7 @@ Pulse - Advanced Search
 
 <main role="main" class="container">
 
-<h3>Filter Products</h3>
+<h3>Filter Games</h3>
       <form method="GET" action=".">
         <div class="form-row">
 
@@ -25,39 +25,26 @@ Pulse - Advanced Search
             </div>        
         </div>
 
-        <br>
-        <div class="form-row">
-          <div class="form-group col-12">
-              <div class="input-group">
-                  <input class="form-control py-2 border-right-0 border" type="search" name="dev_exact" placeholder="Developer...." />
-                  <span class="input-group-append"></span>
-              </div>
-          </div>        
-      </div>
-
       <br>
-      <div class="form-row">
-        <div class="form-group col-12">
-            <div class="input-group">
-                <input class="form-control py-2 border-right-0 border" type="search" name="genre_exact" placeholder="Genre...." />
-                <span class="input-group-append"></span>
-            </div>
-        </div>        
-      </div>
-
-      <br>
-      <div class="form-row row">
-
-        <div class="form-group col-md-2 col-lg-2">
-          <label for="PriceMin">Minimum Price</label>
-          <input type="float" min=0 class="form-control" placeholder="Min" name="price_min">
-        </div>
-
-        <div class="form-group col-md-2 col-lg-2">
-          <label for="PriceMax">Maximum Price</label>
-          <input type="float" min=0 class="form-control"  placeholder="Max" name="price_max">
-        </div>
-
+        <div class="form-row row">
+          <div class="form-group col-md-2 col-lg-2">
+            <label for="Genres">Game Developer</label>
+            <select class="form-control" name="developer">
+              <option selected value= '' >---</option>
+              {% for dev in developers%}
+              <option value="{{ dev }}">{{ dev }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-lg-2">
+            <label for="Genres">Game Genre</label>
+            <select class="form-control" name="category">
+              <option selected value= '' >---</option>
+              {% for cate in categories %}
+              <option value="{{ cate }}">{{ cate }}</option>
+              {% endfor %}
+            </select>
+          </div>
         <div class="form-group col-md-2 col-lg-2">
           <label for="MinAge">Minimum Age Rating</label>
           <select class="form-control" name="min_age">
@@ -82,6 +69,17 @@ Pulse - Advanced Search
           </select>
         </div>
 
+        <div class="form-group col-md-2 col-lg-2">
+          <label for="PriceMin">Minimum Price</label>
+          <input type="float" min=0 class="form-control" placeholder="Min" name="price_min">
+        </div>
+
+        <div class="form-group col-md-2 col-lg-2">
+          <label for="PriceMax">Maximum Price</label>
+          <input type="float" min=0 class="form-control"  placeholder="Max" name="price_max">
+        </div>
+
+
       </div>
       <br>
         <button type="submit" class="btn btn-primary">Search</button>
@@ -98,11 +96,12 @@ Pulse - Advanced Search
               {% if product.picture %}
               <img style="width: 6rem; height: 8rem; object-fit: fill;" src="{{ product.picture.url }}" alt="{{product.name}}">
               {% endif %}
-            Game: {{ product.name }} |
-            <span>Developer: {{ product.developer.name }}</span> |
-            <span>Genre: {{ product.category.name }}</span> |
-            <span>Price: €{{ product.price }}</span> |
-            <span>Age Rating: {{ product.age_rating }}+</span> |
+            {{ product.name }} |
+            <span>{{ product.developer.name }}</span> |
+            <span>{{ product.category.name }}</span> |
+            <span>{{ product.age_rating }}+</span> |
+            <span>€{{ product.price }}</span> |
+            
             </ul>
             <hr />
             {% endif %}
