@@ -106,13 +106,13 @@ def filter_view(request):
         qs = qs.filter(price__gte=price_count_min) 
     
     if  price_count_max != '' and price_count_max is not None:
-        qs = qs.filter(price__lt=price_count_max) 
+        qs = qs.filter(price__lte=price_count_max) 
     
     if age_min != '' and age_min is not None:
         qs = qs.filter(age_rating__gte=age_min)
         
     if age_max != '' and age_max is not None:
-        qs = qs.filter(age_rating__lt=age_max)
+        qs = qs.filter(age_rating__lte=age_max)
         
     if category != '' and category is not None:
         qs = qs.filter(category__name=category)
