@@ -14,8 +14,23 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-royalblue">
       <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'pages:homepage' %}" ><img src="{% static 'images/pulse_logo-removebg-preview.png' %}" alt="" height="50rem"></a>
-        <a class="navbar-brand" href="{% url 'pages:all_products' %}" style="font-size: 1rem;" >Products</a>
+        <a class="navbar-brand" href="{% url 'pages:homepage' %}">
+          <img src="{% static 'images/pulse_logo-removebg-preview.png' %}" alt="Logo" height="50rem">
+      </a>
+      <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav"> 
+              <li class="nav-item dropdown dropdown2">
+                  <a class="nav-link dropdown-toggle" href="#" id="browseDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Browse
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="browseDropdown">
+                      <li><a class="dropdown-item" href="{% url 'pages:all_products' %}">Products</a></li>
+                      <li><a class="dropdown-item" href="{% url 'pages:homepage' %}">Recommended</a></li>
+                      <li><a class="dropdown-item" href="#">Preorders</a></li>
+                  </ul>
+              </li>
+          </ul>
+      </div>
         <form class="d-flex" action="{% url 'search_app:searchResult' %}" method="get">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="q">
           <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>

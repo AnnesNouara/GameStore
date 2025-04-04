@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+{% load static %}
 <title>{% block title %} Pulse - Products {% endblock title %}</title>
 <br> 
 <nav aria-label="breadcrumb">
@@ -50,6 +51,11 @@
                 <h4>{{product.name}}</h4>
                 <p> {{product.category.name}} </p>
                   <p>€{{product.price}}</p>
+                  {% if user.is_authenticated %}
+                  <div class="cartbutton">
+                    <a name="nav-link" href="{% url 'cart:add_cart' product.id%}"><img src="{% static 'images/addcart.png' %}" alt="Shopping Cart" height="40rem" width="42rem"></a>
+                  </div>
+                  {% endif %}
               </div>
           </div>
         </a>
