@@ -26,7 +26,6 @@
                   <ul class="dropdown-menu" aria-labelledby="browseDropdown">
                       <li><a class="dropdown-item" href="{% url 'pages:all_products' %}">Products</a></li>
                       <li><a class="dropdown-item" href="{% url 'pages:homepage' %}">Recommended</a></li>
-                      <li><a class="dropdown-item" href="{% url 'wishlist:wishlist_detail' %}">Wishlist</a></li>
                       <li><a class="dropdown-item" href="#">Preorders</a></li>
                   </ul>
               </li>
@@ -103,6 +102,18 @@
           </li>
           {% endif %}
         </div>
+
+        <div class="shop">
+        {% if item_count1 > 0 %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'wishlist:wishlist_detail' %}"><img src="{% static 'images/document.png' %}" alt="WishList" height="40rem" width="45rem">({{item_count1}})</a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'wishlist:wishlist_detail' %}"><img src="{% static 'images/document.png' %}" alt="Wishlist" height="40rem" width="45rem"></a>
+        </li>
+        {% endif %}
+      </div>
       </div>
     </nav>
     <main>

@@ -5,5 +5,6 @@ app_name = 'wishlist'
 
 urlpatterns = [
     path('add/<uuid:product_id>/', views.add_wishlist, name='add_wishlist'),
-    path('', views.wishlist_detail, name='wishlist_detail')  
+    path('', views.wishlist_detail, name='wishlist_detail'),
+    path('full_remove/<uuid:product_id>/', views.full_remove, name='full_remove'),
 ]
