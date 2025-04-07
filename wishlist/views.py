@@ -1,4 +1,4 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from pages.models import Product
 from django.core.exceptions import ObjectDoesNotExist
 from .models import Wishlist, WishListItem
@@ -7,6 +7,7 @@ def _wishlist_id(request):
     wishlist = request.session.session_key
     if not wishlist:
         wishlist = request.session.create()
+        wishlist = request.session.session_key
     return wishlist
 
 def add_wishlist(request, product_id):
@@ -18,8 +19,6 @@ def add_wishlist(request, product_id):
         wishlist.save()
     try:
         wishlist_item = WishListItem.objects.get(product=product, wishlist=wishlist)
-        if (wishlist_item.quantity < wishlist_item.product.stock):
-            wishlist_item.quantity +=1
         wishlist_item.save()
     except WishListItem.DoesNotExist:
         wishlist_item = WishListItem.objects.create(product=product, quantity=1,wishlist=wishlist)
@@ -40,4 +39,10 @@ def wishlist_detail(request, total=0, counter=0, wishlist_items = None):
     'total':total,
     'counter':counter
     })
-# Create your views here.
+
+def full_remove(request, product_id):
+    wishlist = Wishlist.objects.get(wishlist_id=_wishlist_id(request))
+    product = get_object_or_404(Product, id=product_id)
+    wishlist_item = WishListItem.objects.get(product=product, wishlist=wishlist)
+    wishlist_item.delete()
+    return redirect('wishlist:wishlist_detail')
