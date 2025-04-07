@@ -45,8 +45,9 @@ def home_list(request, category_id=None):
     
     if request.user.is_authenticated:
         user = request.user
-        products = products.filter(developer=user.profile.Developer) | products.filter(category=user.profile.Category) | products.filter(category=user.age)
-        products = products.distinct()
+        products = products.filter(developer=user.profile.Developer) | products.filter(category=user.profile.Category)
+    
+        products = products.filter(age_rating__lte=request.user.age)    
     
     paginator = Paginator(products, 4)
     try:
