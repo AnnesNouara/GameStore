@@ -91,10 +91,10 @@
           </div>
           {% endif %}
         </div>
-        <div class="shop">
+        <div class="shop" style="margin-right:8px">
           {% if item_count > 0 %}
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'cart:cart_detail' %}"><img src="{% static 'images/shopping-bag.png' %}" alt="Shopping Cart" height="40rem" width="45rem">({{item_count}})</a>
+            <a class="nav-link" href="{% url 'cart:cart_detail' %}"  style="color: white;"><img src="{% static 'images/shopping-bag.png' %}" alt="Shopping Cart" height="40rem" width="45rem">({{item_count}})</a>
           </li>
           {% else %}
           <li class="nav-item">
@@ -106,11 +106,11 @@
         <div class="shop">
         {% if item_count1 > 0 %}
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'wishlist:wishlist_detail' %}"><img src="{% static 'images/document.png' %}" alt="WishList" height="40rem" width="45rem">({{item_count1}})</a>
+          <a class="nav-link" href="{% url 'wishlist:wishlist_detail' %}"  style="color: white;"><img src="{% static 'images/heart.png' %}" alt="WishList" height="40rem" width="45rem">({{item_count1}})</a>
         </li>
         {% else %}
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'wishlist:wishlist_detail' %}"><img src="{% static 'images/document.png' %}" alt="Wishlist" height="40rem" width="45rem"></a>
+          <a class="nav-link" href="{% url 'wishlist:wishlist_detail' %}"><img src="{% static 'images/heart.png' %}" alt="Wishlist" height="40rem" width="45rem"></a>
         </li>
         {% endif %}
       </div>

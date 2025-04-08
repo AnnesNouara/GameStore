@@ -72,9 +72,10 @@
                                 {% if cart_item.quantity < cart_item.product.stock %}
                                     <div class="icon">
                                         <td>
-                                            <a href="{% url 'cart:add_cart' cart_item.product.id %}" ><img src="{% static 'images/add-to-cart.png' %}" alt="" height="20rem" width="20rem"></a>&nbsp;
-                                            <a href="{% url 'cart:cart_remove' cart_item.product.id %}" ><img src="{% static 'images/cart-minus.png' %}" alt="" height="20rem" width="20rem"></a>&nbsp;
-                                            <a href="{% url 'cart:full_remove' cart_item.product.id %}" ><img  src="{% static 'images/cartbin.png' %}" alt="" height="20rem" width="20rem"></a>
+                                            <a href="{% url 'cart:add_cart' cart_item.product.id %}" ><img src="{% static 'images/add-to-cart.png' %}" alt="Add product" height="20rem" width="20rem"></a>&nbsp;
+                                            <a href="{% url 'cart:cart_remove' cart_item.product.id %}" ><img src="{% static 'images/cart-minus.png' %}" alt="Reduce product" height="20rem" width="20rem"></a>&nbsp;
+                                            <a href="{% url 'cart:full_remove' cart_item.product.id %}" ><img  src="{% static 'images/cartbin.png' %}" alt="Delete product" height="20rem" width="20rem"></a>
+                                            <a href="{% url 'cart:to_wishlist' cart_item.product.id %}" ><img  src="{% static 'images/wishlist.png' %}" alt="Add to wishlist" height="20rem" width="20rem"></a>
                                         </td>
                                     </div>
                                 {% else %}
