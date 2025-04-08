@@ -1,5 +1,6 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from pages.models import Product
+from wishlist.models import Wishlist, WishListItem
 from .models import Cart, CartItem
 from django.core.exceptions import ObjectDoesNotExist
 import stripe
@@ -24,6 +25,7 @@ def add_cart(request, product_id):
     except Cart.DoesNotExist:
         cart = Cart.objects.create(cart_id=_cart_id(request))
         cart.save()
+        
     try:
         cart_item = CartItem.objects.get(product=product, cart=cart)
         if (cart_item.quantity < cart_item.product.stock):
@@ -31,8 +33,33 @@ def add_cart(request, product_id):
         cart_item.save()
     except CartItem.DoesNotExist:
         cart_item = CartItem.objects.create(product=product, quantity=1,cart=cart)
+    
+    try: #Related to Wishlist func.
+        wishlist = Wishlist.objects.get(wishlist_id=_cart_id(request))
+        wishlist_item = WishListItem.objects.get(wishlist=wishlist, product=product)
+        wishlist_item.delete()
+    except (Wishlist.DoesNotExist, WishListItem.DoesNotExist):
+        pass 
     return redirect('cart:cart_detail')
 
+def to_wishlist(request, product_id): #Moves prod from cart 2 wishlist
+    product = get_object_or_404(Product, id=product_id)
+    try:
+        
+        cart = Cart.objects.get(cart_id=_cart_id(request))
+        
+        cart_item = CartItem.objects.get(product=product, cart=cart)
+        
+        cart_item.delete()
+        
+        wishlist = Wishlist.objects.get_or_create(wishlist_id=_cart_id(request))[0]
+    
+        WishListItem.objects.get_or_create(product=product, wishlist=wishlist, defaults={'quantity': 1})
+    except CartItem.DoesNotExist:
+        return redirect('cart:cart_detail')    
+    
+    return redirect('wishlist:wishlist_detail')
+    
 def cart_detail(request, total=0, counter=0, cart_items = None):
     discount = 0
     voucher_id = 0

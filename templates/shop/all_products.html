@@ -52,9 +52,14 @@
                 <p> {{product.category.name}} </p>
                   <p>€{{product.price}}</p>
                   {% if user.is_authenticated %}
+                  <section>
+                  <div class="cartbutton">
+                    <a name="nav-link" href="{% url 'wishlist:add_wishlist' product.id %}"><img src="{% static 'images/heart_W.png' %}" alt="Wishlist" height="40rem" width="42rem"></a>
+                  </div>
                   <div class="cartbutton">
                     <a name="nav-link" href="{% url 'cart:add_cart' product.id%}"><img src="{% static 'images/addcart.png' %}" alt="Shopping Cart" height="40rem" width="42rem"></a>
                   </div>
+                </section>
                   {% endif %}
               </div>
           </div>

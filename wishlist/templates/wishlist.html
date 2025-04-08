@@ -55,10 +55,8 @@
                 <span>{{ wishlist_item.product.category.name }}</span> |
                 <span>{{ wishlist_item.product.age_rating }}+</span> |
                 <span>€{{ wishlist_item.product.price }}</span> |
-                <br>
-                <br>
-                <span><a class="btn btn-secondary" href="{% url 'cart:add_cart' wishlist_item.product.id%}">Add to cart</a></span>
-                <span><a class="btn btn-secondary" href="{% url 'wishlist:full_remove' wishlist_item.product.id%}">Clear</a></span>
+                <a href="{% url 'cart:add_cart' wishlist_item.product.id%}"><img src="{% static 'images/add-to-cart.png' %}" alt="Add product" height="20rem" width="20rem"></a>
+                <a href="{% url 'wishlist:full_remove' wishlist_item.product.id%}"><img src="{% static 'images/minus.png' %}" alt="Add product" height="20rem" width="20rem"></a>
                 </ul>
                 <hr />
               {% endfor %}
