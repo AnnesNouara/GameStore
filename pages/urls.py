@@ -8,6 +8,7 @@ urlpatterns = [
     path('', views.home_list, name = 'homepage'),
     path('Filter/',views.filter_view, name="filter_search"),
     path('Products/', views.prod_list, name = 'all_products'),
+    path('Preorders/', views.preorder_list, name = 'preorders'),
     path('<uuid:category_id>/', views.prod_list, name = 'products_by_category'),
     path('<uuid:category_id>/<uuid:product_id>/', views.product_detail, name = 'product_detail'),
     path('<uuid:category_id>/<uuid:product_id>/edit', GameEditView.as_view(), name = 'game_edit'),

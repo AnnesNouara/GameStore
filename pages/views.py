@@ -130,3 +130,23 @@ def filter_view(request):
     }
 
     return render(request, 'filter.html', context)
+
+def preorder_list(request, category_id=None):
+    category = None
+    products = Product.objects.filter(available = True)
+        
+    if category_id:
+        category = get_object_or_404(Category, id=category_id)
+        products = Product.objects.filter(category=category, available = True)
+    
+    paginator = Paginator(products, 8)
+    try:
+        page = int(request.GET.get('page','1'))
+    except:
+        page = 1
+    try:
+        products = paginator.page(page)
+    except (EmptyPage,InvalidPage):
+        products = paginator.page(paginator.num_pages)
+        
+    return render(request, 'shop/preorders.html',{'category':category, 'prods':products})
