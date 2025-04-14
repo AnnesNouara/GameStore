@@ -59,6 +59,7 @@ class Product(models.Model):
     created = models.DateTimeField(auto_now_add=True, blank = True, null = True)
     updated = models.DateTimeField(auto_now=True, blank = True, null = True)
     developer = models.ForeignKey(Developer, on_delete=models.CASCADE, null = True)
+    preorder = models.BooleanField(default=False)
     
     class Meta:
         ordering = ('name',)

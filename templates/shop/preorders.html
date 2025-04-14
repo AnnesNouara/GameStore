@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block content %}
+<title>{% block title %} Pulse - Home {% endblock title %}</title>
+<br> 
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active" aria-current="page">Home</li>
+    </ol>
+  </nav>
+  {% if user.is_authenticated %}
+  <br>
+<section id="HomeBox1">
+  <h1 class = "text-center">
+    Welcome to <b>Pulse</b>, {{user.username}}
+  </h1>
+</section>
+
+
+<section id="HomeBox3">
+    <h3 class="text-center">Upcoming games</h3>
+    <div class="container">
+      <div class="row mx-auto">
+        {% for product in prods %}
+          {% if product.preorder and user.age >= product.age_rating %}
+            <div class="my_bottom_margin col-6 col-lg-3 col-sm-12 col-md-6">
+              <a href="{{ product.get_absolute_url }}" style="text-decoration: none;">
+                <div class="card text-center h-100 d-flex flex-column">
+                  {% if product.picture %}
+                    <img class="card-img-top" src="{{ product.picture.url }}" alt="{{ product.name }}" style="width: 100%; height:200px; object-fit: fill;">
+                  {% endif %}
+                  <div class="price flex-grow-1 d-flex flex-column justify-content-end">
+                    <h4>{{ product.name }}</h4>
+                    <p>{{ product.category.name }}</p>
+                    <p>€{{ product.price }}</p>
+                  </div>
+                </div>
+              </a>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </section>  
+  {% endif %}
+    </div>
+  </div>
+</div>
+{% if prods.paginator.num_pages > 1 %}
+<hr>
+<div class="mx-auto">
+<div class ="text-center">
+  {% for pg in prods.paginator.page_range %}
+  <a href="?page={{pg}}" class = "btn btn-light btn=sm
+  {% if products.number == pg %} active {% endif %}">{{pg}}</a>
+  {% endfor %}
+{% endif %}
+</section>
+  {% endblock content%}
