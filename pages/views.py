@@ -139,6 +139,11 @@ def preorder_list(request, category_id=None):
         category = get_object_or_404(Category, id=category_id)
         products = Product.objects.filter(category=category, available = True)
     
+    if request.user.is_authenticated:
+        products = products.filter(preorder=True)
+    
+        products = products.filter(age_rating__lte=request.user.age)    
+        
     paginator = Paginator(products, 8)
     try:
         page = int(request.GET.get('page','1'))
