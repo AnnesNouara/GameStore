@@ -52,6 +52,35 @@
 
                         {% endif %}
                     </div>
+                    <hr>
+                        <h3>Leave a Review:</h3>
+                        {% if user.is_authenticated %}
+                            <form method="post">
+                                {% csrf_token %}
+                                <label for="id_rating">Rating:(1-5):</label>
+                                {{ form.rating }}
+                                <br>
+                                <br>
+                                <label for="id_comment">Comment:</label>
+                                {{ form.comment}}
+                                <br>
+                                <br>
+                                <button type="submit" class="btn btn-primary">Submit Review</button>
+                            </form>
+                        {% else %}
+                            <strong>To leave a review, Log in -></strong> 
+                            <button class="btn btn-primary ml-2" type="submit">Log In</button>
+                        {% endif %}
+                            <hr>
+                        <h3>Reviews:</h3>
+                            <ul>
+                            {% for review in reviews %}
+                            <li>
+                                <strong>{{ review.user.username }}</strong>:
+                                {{ review.rating }} stars - Comment: {{ review.comment }}
+                            </li>
+                            {% endfor %}
+                            </ul>
                     <br>
                 </div>
             </div>

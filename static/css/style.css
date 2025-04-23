@@ -131,3 +131,9 @@ body{
         background-color: #03256c;
         color: white;
     } 
+
+
+    .small-textarea{
+        height: 60px;
+        resize: vertical;
+    }

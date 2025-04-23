@@ -20,6 +20,4 @@ urlpatterns = [
 
 ]
 
-# urls.py
-
 
