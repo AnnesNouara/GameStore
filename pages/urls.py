@@ -14,4 +14,12 @@ urlpatterns = [
     path('<uuid:category_id>/<uuid:product_id>/edit', GameEditView.as_view(), name = 'game_edit'),
     path('<uuid:category_id>/<uuid:product_id>/delete', GameDeleteView.as_view(), name = 'game_delete'),
     path('new/', GameCreateView.as_view(), name = 'game_create'),
+    path('rent/<uuid:product_id>/', views.rent_game, name='rent_game'),
+    path('rental/success/', views.rental_success, name='rental_success'),
+    path('my-rentals/', views.my_rentals, name='my_rentals'),
+
 ]
+
+# urls.py
+
+

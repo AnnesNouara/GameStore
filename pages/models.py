@@ -1,6 +1,9 @@
 from django.db import models
 import uuid
 from django.urls import reverse
+from django.contrib.auth import get_user_model
+from datetime import timedelta
+from django.utils import timezone
 
 # Create your models here.
 
@@ -71,3 +74,17 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Rental(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user = models.ForeignKey('users.CustomUser', on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    duration = models.IntegerField(default=True)
+    start_date = models.DateTimeField(auto_now_add=True)
+    returned = models.BooleanField(default=False)
+
+
+    def __str__(self):
+        return f"{self.user} rented {self.product.name}"
+
