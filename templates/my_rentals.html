@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}My Rentals{% endblock %}
+
+{% block content %}
+  <h2 class="mt-4">My Rentals</h2>
+
+  {% if rentals %}
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover mt-3">
+        <thead class="table-light">
+          <tr>
+            <th scope="col">🎮 Product</th>
+            <th scope="col">📅 Duration (days)</th>
+            <th scope="col">✅ Returned?</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for rental in rentals %}
+            <tr>
+              <td>{{ rental.product.name }}</td>
+              <td>{{ rental.duration }}</td>
+              <td>
+                {% if rental.is_returned %}
+                  <span>Yes</span>
+                {% else %}
+                  <span>No</span>
+                {% endif %}
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <div class="alert alert-info mt-3">
+      You have no active rentals at the moment. Start renting your favorite games!
+    </div>
+  {% endif %}
+{% endblock %}
+

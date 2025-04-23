@@ -1,9 +1,36 @@
-from .models import Category, Product, Developer
+from .models import Category, Product, Developer, Rental
 from django.core.paginator import Paginator, EmptyPage, InvalidPage
-from django.shortcuts import render, get_object_or_404
-from django.urls import reverse_lazy
+from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse_lazy, reverse
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.views.generic import CreateView, DeleteView, UpdateView
+from .forms import RentalForm
+
+
+def rent_game(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+
+    if request.method == 'POST':
+        form = RentalForm(request.POST)
+        if form.is_valid():
+            rental = form.save(commit=False)
+            rental.user = request.user
+            rental.product = product
+            rental.save()
+            return redirect('pages:rental_success')
+    else:
+        form = RentalForm()
+
+    return render(request, 'rent_game.html', {'form': form, 'product': product})
+
+
+def rental_success(request):
+    return render(request, 'rental_success.html')
+
+def my_rentals(request):
+    rentals = Rental.objects.filter(user=request.user)
+    
+    return render(request, 'my_rentals.html', {'rentals': rentals})
 
 
 # Create your views here.

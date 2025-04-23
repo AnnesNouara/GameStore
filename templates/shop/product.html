@@ -47,6 +47,7 @@
                         {% else %}   
                             <a class="btn btn-secondary" href="{% url 'cart:add_cart' product.id%}">Add to cart</a>
                         {% endif %}
+                        <a class="btn btn-secondary" href="{% url 'pages:rent_game' product.id%}">Rent</a>
                         {% endif %}
 
                         {% endif %}
