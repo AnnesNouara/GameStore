@@ -1,8 +1,8 @@
 from django import forms
-from .models import Rental  # or whatever your model is
+from .models import Rental 
 
 class RentalForm(forms.ModelForm):
     class Meta:
         model = Rental
-        fields = ['duration']  # or your fields
+        fields = ['duration'] 
 
