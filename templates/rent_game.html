@@ -22,18 +22,9 @@
   <form method="post" class="mt-4">
     {% csrf_token %}
 
-    {% if form.errors %}
-      <div class="alert alert-danger">
-        Please correct the highlighted fields below.
-      </div>
-    {% endif %}
 
     <div class="mb-3">
-      {{ form.duration.label_tag }}
-      {{ form.duration }}
-      {% if form.duration.errors %}
-        <div class="text-danger small">{{ form.duration.errors.0 }}</div>
-      {% endif %}
+    Duration: {{ form.duration }}
     </div>
 
     <button type="submit" class="btn btn-primary">Confirm Rental</button>
