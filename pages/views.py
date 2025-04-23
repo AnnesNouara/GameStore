@@ -1,10 +1,10 @@
-from .models import Category, Product, Developer, Rental
+from .models import Category, Product, Developer, Rental, Review
 from django.core.paginator import Paginator, EmptyPage, InvalidPage
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy, reverse
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.views.generic import CreateView, DeleteView, UpdateView
-from .forms import RentalForm
+from .forms import RentalForm, ReviewForm
 
 
 def rent_game(request, product_id):
@@ -109,10 +109,38 @@ def prod_list(request, category_id=None):
         
     return render(request, 'shop/all_products.html',{'category':category, 'prods':products})
 
+
 def product_detail(request, category_id, product_id):
     product = get_object_or_404(Product, category_id=category_id, id=product_id)
-    return render(request, 'shop/product.html', {'product':product})
+    reviews = product.reviews.all()
+    user_review = None
 
+    if request.user.is_authenticated:
+        try:
+            user_review = Review.objects.get(product=product, user=request.user)
+        except Review.DoesNotExist:
+            user_review = None
+
+    form = ReviewForm(instance=user_review) 
+
+    if request.method == 'POST':
+        if not request.user.is_authenticated:
+            return redirect('login')
+
+        form = ReviewForm(request.POST, instance=user_review)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.product = product
+            review.user = request.user
+            review.save()
+            return redirect('pages:product_detail',category_id=product.category_id, product_id=product_id)
+
+    return render(request, 'shop/product.html', {
+        'product': product,
+        'reviews': reviews,
+        'form': form,
+    })
+                                                
 def filter_view(request):
     qs = Product.objects.all()
     categories = Category.objects.all()
