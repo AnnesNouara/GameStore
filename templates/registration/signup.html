@@ -4,6 +4,9 @@
 {% block title %}Sign Up{% endblock title %}
 
 {% block content %}
+<div class="card mx-auto mt-4" style="max-width: 40rem;">
+  <div class="card shadow-lg rounded">
+  <div class="card-body text-center">
 <style>
   body {
     background-image: url('/static/images/signup2.jpg');
@@ -15,4 +18,7 @@
   {{ form|crispy }}
   <button class = "btn btn-success" type="submit">Sign Up</button>
 </form>
+  </div>
+  </div>
+</div>
 {% endblock content %}
