@@ -41,13 +41,13 @@ class ManagerRequiredMixin(UserPassesTestMixin):
     
 class GameCreateView(ManagerRequiredMixin, CreateView):
     model = Product
-    fields = ('name', 'category', 'developer', 'picture', 'price', 'stock', 'description')
+    fields = ('name', 'category', 'developer', 'picture','age_rating', 'price', 'stock', 'description')
     template_name = 'shop/new_product.html'
     success_url = reverse_lazy('pages:all_products')
 
 class GameEditView(ManagerRequiredMixin,UpdateView):
     model = Product
-    fields = ('name', 'category', 'developer', 'picture', 'price', 'stock', 'description')
+    fields = ('name', 'category', 'developer', 'picture','age_rating', 'price', 'stock', 'description')
     template_name = 'shop/edit_product.html'
     
     def get_object(self, queryset=None):
