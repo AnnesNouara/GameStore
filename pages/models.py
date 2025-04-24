@@ -77,14 +77,14 @@ class Rental(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.ForeignKey('users.CustomUser', on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    duration = models.IntegerField(default=True)
+    duration = models.IntegerField(default=1)
     returned = models.BooleanField(default=False)
     
 
 class Review(models.Model):
     user = models.ForeignKey('users.CustomUser', on_delete=models.CASCADE)
     product = models.ForeignKey(Product, related_name='reviews', on_delete=models.CASCADE)
-    rating = models.IntegerField()
+    rating = models.IntegerField(default=0)
     comment = models.TextField(blank=True)
 
     class Meta:
