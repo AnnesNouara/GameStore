@@ -150,7 +150,7 @@ def filter_view(request):
     price_count_max = request.GET.get('price_max','')
     age_min = request.GET.get('min_age','')
     age_max = request.GET.get('max_age','')
-    
+    reviewed = request.GET.get('reviewed','')
     category = request.GET.get('category','')
     developer = request.GET.get('developer','')
     
@@ -176,8 +176,9 @@ def filter_view(request):
     if developer != '' and developer is not None:
         qs = qs.filter(developer__name=developer)
     
-        
-
+    if reviewed == 'on':
+        qs = qs.filter(id__in=Review.objects.filter(rating__gt=0).values('product_id'))
+    
     context = {
         'queryset':qs,
         'categories':categories,

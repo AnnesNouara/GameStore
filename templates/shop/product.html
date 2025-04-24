@@ -10,8 +10,8 @@
         <li class="breadcrumb-item active" aria-current="page">{{product.name}}</li>
       </ol>
 {% if is_manager %}
-    <a href="{% url 'pages:game_edit' product.category.id product.id %}">Edit game</a>
-    <a href="{% url 'pages:game_delete' product.category.id product.id %}">Delete game</a>
+    <a class="btn btn-secondary" href="{% url 'pages:game_edit' product.category.id product.id %}">Edit game</a>
+    <a class="btn btn-secondary" href="{% url 'pages:game_delete' product.category.id product.id %}">Delete game</a>
 {% endif %}
   </nav>
         <div class="container">
@@ -47,12 +47,15 @@
                         {% else %}   
                             <a class="btn btn-secondary" href="{% url 'cart:add_cart' product.id%}">Add to cart</a>
                         {% endif %}
+                        {% if product.preorder != True %}
                         <a class="btn btn-secondary" href="{% url 'pages:rent_game' product.id%}">Rent</a>
+                        {% endif %}
                         {% endif %}
 
                         {% endif %}
                     </div>
                     <hr>
+                    {% if product.preorder != True %}
                         <h3>Leave a Review:</h3>
                         {% if user.is_authenticated %}
                             <form method="post">
@@ -68,8 +71,7 @@
                                 <button type="submit" class="btn btn-primary">Submit Review</button>
                             </form>
                         {% else %}
-                            <strong>To leave a review, Log in -></strong> 
-                            <button class="btn btn-primary ml-2" type="submit">Log In</button>
+                            <strong>To leave a review, Log in</strong> 
                         {% endif %}
                             <hr>
                         <h3>Reviews:</h3>
@@ -81,6 +83,9 @@
                             </li>
                             {% endfor %}
                             </ul>
+                    {% else %}
+                    You can review {{ product.name }} when it comes out!
+                    {% endif %}
                     <br>
                 </div>
             </div>
