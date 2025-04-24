@@ -177,7 +177,7 @@ def filter_view(request):
         qs = qs.filter(developer__name=developer)
     
     if reviewed == 'on':
-        qs = qs.filter(id__in=Review.objects.filter(rating__gt=0).values('product_id'))
+        qs = qs.filter(id__in=Review.objects.filter(rating__gt=0).values('product_id')) #Gets review and ties it with product id, then checks if there are ratings (there are ratings if any of the ratings are higher than 0)
     
     context = {
         'queryset':qs,
