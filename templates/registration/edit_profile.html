@@ -17,11 +17,8 @@
     {% if is_manager %}
     <strong>Title: Manager</strong>
     {% endif %}
-    <br>
-    Username: {{ user.profile.user }}
-    <br>
+    Username: {{ user.profile.user }} <br>
     Age: {{ user.age }}
-    <br>
     <hr class="rounded">
     <strong><p>Note: You cannot change your username</p></strong>
     <form method="POST">
@@ -30,6 +27,7 @@
         <input class="btn btn-dark" type="submit" value="Update Profile">
     </form>
 
+</div>
 </div>
 </div>
 

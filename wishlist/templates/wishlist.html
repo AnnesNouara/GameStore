@@ -5,51 +5,51 @@
 <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="{% url 'pages:homepage' %}" aria-current="page">Home</a></li>
     <li class="breadcrumb-item active" aria-current="page">Wishlist</li>
-  </ol>
-    {% if not wishlist_items %}
-        <div>
-            <div class="text-center">
-                <br>
-                <h1 class="text-center my_title">
-                    Your Wishlist is empty
-                </h1>
-                <br>
-                <p class="text-center">
-                    To fill your wishlist, click <a href="{% url 'pages:all_products' %}">here</a>.
-                </p>
-            </div>
+</ol>
+{% if not wishlist_items %}
+    <div>
+        <div class="text-center">
+            <br>
+            <h1 class="text-center my_title">
+                Your Wishlist is empty
+            </h1>
+            <br>
+            <p class="text-center">
+                To fill your wishlist, click <a href="{% url 'pages:all_products' %}">here</a>.
+            </p>
         </div>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-    {% else %}
-        <div>
-            <div class="text-center">
-                <br>
-                <h1 class="text-center my_title">
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+{% else %}
+    <div>
+        <div class="text-center">
+            <br>
+            <h1 class="text-center my_title">
                 Your Wishlist
-                </h1>
-                <br>
-            </div>
+            </h1>
+            <br>
         </div>
-        <div class=" row mx-auto" style="text-align: left;">
-            {% for wishlist_item in wishlist_items %}
-            <a href="{{wishlist_item.product.get_absolute_url}}" style="text-decoration: none;">
-                <ul>
-                  {% if wishlist_item.product.picture %}
-                  <img style="width: 6rem; height: 8rem; object-fit: fill;" src="{{ wishlist_item.product.picture.url }}" alt="{{wishlist_item.product.name}}">
-                  {% endif %}
+    </div>
+    <div class="row mx-auto " style="text-align: left;">
+        {% for wishlist_item in wishlist_items %}
+        <a href="{{wishlist_item.product.get_absolute_url}}" style="text-decoration: none;">
+            <ul style="background-color: white; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                {% if wishlist_item.product.picture %}
+                <img style="width: 6rem; height: 8rem; object-fit: fill;" src="{{ wishlist_item.product.picture.url }}" alt="{{wishlist_item.product.name}}">
+                {% endif %}
                 {{ wishlist_item.product.name }} |
                 <span>{{ wishlist_item.product.developer.name }}</span> |
                 <span>{{ wishlist_item.product.category.name }}</span> |
@@ -57,11 +57,9 @@
                 <span>€{{ wishlist_item.product.price }}</span> |
                 <a href="{% url 'cart:add_cart' wishlist_item.product.id%}"><img src="{% static 'images/add-to-cart.png' %}" alt="Add product" height="20rem" width="20rem"></a>
                 <a href="{% url 'wishlist:full_remove' wishlist_item.product.id%}"><img src="{% static 'images/minus.png' %}" alt="Add product" height="20rem" width="20rem"></a>
-                </ul>
-                <hr />
-              {% endfor %}
-            </a>
-        </div>
-    {% endif %}
-
+            </ul>
+        {% endfor %}
+        </a>
+    </div>
+{% endif %}
 {% endblock %}
