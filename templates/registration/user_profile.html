@@ -3,32 +3,33 @@
 {% block title %}User Profile{% endblock title %}
 {% block content %}
 
+<div class="card mx-auto mt-4" style="max-width: 40rem;">
+    <div class="card shadow-lg rounded">
+<div class="card-body">
+
     <br>
     <div class="text-center">
-        <h1>Profile</h1>
-        <hr class="rounded">
+        <h1>User Profile</h1>
         <img src="{% static 'images/icon1.png' %}" alt="" height="150rem" width="150rem">
     </div>
-    <br>
-    <br>
     <div class="text-center">
         {% if is_manager %}
         <strong>Title: Manager</strong>
         {% endif %}
-    <br>
-        Username: {{ user.profile.user }}
-    <br/>
-        Favourite Developer: {{ user.profile.Developer }}
         <br>
-        Favourite Category: {{ user.profile.Category }}
+        <strong>Username: {{ user.profile.user }}</strong>
         <br>
-        Age: {{ user.age }}
+        <strong>Favourite Developer: {{ user.profile.Developer }}</strong>
+        <br>
+        <strong>Favourite Category: {{ user.profile.Category }}</strong>
+        <br>
+        <strong>Age: {{ user.age }}</strong>
         <br>
         <hr class="rounded">
-        <strong>Permissions:</strong>
+        <strong>User Permissions:</strong>
         <br>
-        <a href="{% url 'password_change' %}"><button class = "btn btn-dark">Change Password</button></a>
-        <a href="{% url 'edit_profile' user.profile.pk %}"><button class="btn btn-dark">Edit profile</button></a>
+        <a href="{% url 'password_change' %}"><button class = "btn btn-outline-primary">Change Password</button></a>
+        <a href="{% url 'edit_profile' user.profile.pk %}"><button class="btn btn-outline-primary">Edit profile</button></a>
         {% if is_manager %}
         <br>
         <strong>Manager Permissions:</strong>
@@ -36,4 +37,8 @@
         <a href="{% url 'pages:game_create' %}"><button class = "btn btn-dark">Add Product</button></a>
         {% endif %}
     </div>
+
+</div>
+</div>
+
 {% endblock content %}

@@ -12,6 +12,7 @@
 <body>
   {% block content %}
  <br>
+  <div class="card mx-auto shadow-sm p-4" style="max-width: 30rem;">
     <div class="card-body">
       <h5 class="text-center text-uppercase">Log in</h5>
       <hr class="rounded">
@@ -24,10 +25,10 @@
           <a class="" href="{% url 'csignup' %}">Dont have an account?</a>
       </form>
     </div>
-</div>
+  </div>
 {% endblock content %}
 
-  
 </body>
 </html>
+
 
