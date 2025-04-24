@@ -41,13 +41,13 @@ class ManagerRequiredMixin(UserPassesTestMixin):
     
 class GameCreateView(ManagerRequiredMixin, CreateView):
     model = Product
-    fields = ('name', 'category', 'developer', 'picture', 'price', 'stock', 'description')
+    fields = ('name', 'category', 'developer', 'picture','age_rating', 'price', 'stock', 'description')
     template_name = 'shop/new_product.html'
     success_url = reverse_lazy('pages:all_products')
 
 class GameEditView(ManagerRequiredMixin,UpdateView):
     model = Product
-    fields = ('name', 'category', 'developer', 'picture', 'price', 'stock', 'description')
+    fields = ('name', 'category', 'developer', 'picture','age_rating', 'price', 'stock', 'description')
     template_name = 'shop/edit_product.html'
     
     def get_object(self, queryset=None):
@@ -177,7 +177,7 @@ def filter_view(request):
         qs = qs.filter(developer__name=developer)
     
     if reviewed == 'on':
-        qs = qs.filter(id__in=Review.objects.filter(rating__gt=0).values('product_id'))
+        qs = qs.filter(id__in=Review.objects.filter(rating__gt=0).values('product_id')) #Gets review and ties it with product id, then checks if there are ratings (there are ratings if any of the ratings are higher than 0)
     
     context = {
         'queryset':qs,
