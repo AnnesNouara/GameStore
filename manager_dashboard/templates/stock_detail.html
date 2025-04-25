@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<title>{% block title %} Pulse - {{product.name}} Stock {% endblock title %}</title>
+<br>
+<div class="container">
+    <br>
+    <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 text-center">
+            {% if product.picture %}
+            <div style="min-width:25rem; max-width:25rem;">
+                <img  style="max-width:40rem;"src="{{product.picture.url}}" alt="{{product.name}}">
+            </div>
+            {% endif %}
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+            <div>
+                <h1 class="my_prod_title">{{product.name}}</h1>
+                <br>
+                <p>€{{product.price}}</p>
+                <p>Genre: {{product.category.name}}</p>
+                <p>Age Rating: {{product.age_rating}}+</p>
+                <p>Made by: {{product.developer.name}}</p>
+                <h4>Stock: {{product.stock}}</h4>
+                <br>
+                <h4>Units Sold: {{product.sold_count}}</h4>
+                <hr class="rounded">
+                        
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
