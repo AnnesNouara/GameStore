@@ -78,6 +78,8 @@ body{
     margin-bottom: 15px;
 }
 
+
+
 #promo .button {
         background-color: #03256c;
         color: #ffff;
@@ -88,6 +90,10 @@ body{
 
     .cartbutton{
         margin-left: 10em;
+    }
+
+    .cartbut{
+        margin-right: 30em;
     }
     
     .cartbutton:hover{
@@ -109,7 +115,6 @@ body{
     
     }
     
-    /* Hover effect */
     .dropdown2 .dropdown-toggle:hover {
         background-color: #0056b3; 
     }
@@ -132,8 +137,3 @@ body{
         color: white;
     } 
 
-
-    .small-textarea{
-        height: 60px;
-        resize: vertical;
-    }

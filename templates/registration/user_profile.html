@@ -30,6 +30,8 @@
         <br>
         <a href="{% url 'password_change' %}"><button class = "btn btn-outline-primary">Change Password</button></a>
         <a href="{% url 'edit_profile' user.profile.pk %}"><button class="btn btn-outline-primary">Edit profile</button></a>
+        <a href="{% url 'wishlist:wishlist_detail' %}"><button class = "btn btn-outline-dark">Your wishlist</button></a>
+        <a href="{% url 'pages:my_rentals' %}"><button class = "btn btn-outline-dark">View rentals</button></a>
         {% if is_manager %}
         <br>
         <strong>Manager Permissions:</strong>
