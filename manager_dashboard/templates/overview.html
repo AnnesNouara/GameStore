@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div>
+    <div class="text-center">
+        <br>
+        <h1 class="text-center my_title">Stock Analysis</h1>
+        <br>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Product Id</th>
+                    <th>Title</th>
+                    <th>Stock</th>
+                    <th>Units Sold</th>
+                    <th>Stock Detail</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in prods %}
+                <tr>
+                    <td>{{ product.id }}</td>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.stock }}</td>
+                    <td>{{ product.sold_count }}</td>
+                    <td><a href="stock_detail.html">Stock Detail</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+<br>
+<br>
+{% endblock content %}
