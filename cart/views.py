@@ -239,6 +239,7 @@ def create_order(request):
 
             product = Product.objects.get(id=item.product.id)
             product.stock -= item.quantity
+            product.sold_count += item.quantity
             product.save()
 
             if voucher:

@@ -29,4 +29,5 @@ urlpatterns = [
     path("search/",include('search_app.urls')),
     path('order/',include('order.urls')),
     path('vouchers/',include('vouchers.urls')),
+    path('manager_dashboard/',include('manager_dashboard.urls')),
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

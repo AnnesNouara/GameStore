@@ -60,6 +60,7 @@ class Product(models.Model):
     updated = models.DateTimeField(auto_now=True, blank = True, null = True)
     developer = models.ForeignKey(Developer, on_delete=models.CASCADE, null = True)
     preorder = models.BooleanField(default=False)
+    sold_count = models.IntegerField(default=0)
     
     class Meta:
         ordering = ('name',)
