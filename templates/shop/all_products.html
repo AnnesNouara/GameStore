@@ -8,6 +8,10 @@
         <li class="breadcrumb-item"><a href="{% url 'pages:homepage' %}" aria-current="page">Home</a></li>
         <li class="breadcrumb-item active" aria-current="page">Product</li>
       </ol>
+
+      <div class="alert text-center rounded-pill shadow-sm" role="alert" style="font-size: 1.5rem; background-color: aliceblue; font-style: italic; color: #007bff;">
+        Explore now: Browse through our vast catalog!
+    </div>
   {% if is_manager %}
         <a class="btn btn-secondary" href="{% url 'pages:game_create' %}">Create Game</a>
         <br>

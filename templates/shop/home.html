@@ -7,11 +7,15 @@
       <li class="breadcrumb-item active" aria-current="page">Home</li>
     </ol>
   </nav>
+
+  <div class="alert text-center rounded-pill shadow-sm" role="alert" style="font-size: 1.5rem; background-color: aliceblue; font-style: italic; color: #007bff;">
+    Welcome to pulse, Home to all your Favourite games
+</div>
   {% if user.is_authenticated %}
   <br>
 <section id="HomeBox1">
   <h1 class = "text-center">
-    Welcome to <b>Pulse</b>, {{user.username}}
+    Welcome back, {{user.username}}
   </h1>
 </section>
 
