@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
+<title>{% block title %} Pulse - Stock {% endblock title %}</title>
 <div>
     <div class="text-center">
         <br>
@@ -23,7 +24,7 @@
                     <td>{{ product.name }}</td>
                     <td>{{ product.stock }}</td>
                     <td>{{ product.sold_count }}</td>
-                    <td><a href="stock_detail.html">Stock Detail</a></td>
+                    <td><a href="{% url 'manager_dashboard:stock_detail' product.id %}">Stock Detail</a></td>
                 </tr>
                 {% endfor %}
             </tbody>

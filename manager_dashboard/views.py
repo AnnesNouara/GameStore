@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.views.generic import UpdateView, View
 from pages.models import Product
@@ -21,4 +21,9 @@ class StockView(ManagerRequiredMixin, View):
         prods = Product.objects.all()
         prods = prods.order_by('-sold_count')
         return render(request, 'overview.html', {'prods' : prods})
+    
+class StockDetail(ManagerRequiredMixin, View):
+    def get(self, request, product_id):
+        product = get_object_or_404(Product, id=product_id)
+        return render(request, 'stock_detail.html', {'product' : product})
     
