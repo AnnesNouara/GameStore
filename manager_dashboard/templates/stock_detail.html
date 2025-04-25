@@ -25,6 +25,7 @@
                 <br>
                 <h4>Units Sold: {{product.sold_count}}</h4>
                 <hr class="rounded">
+                <a href="{% url 'manager_dashboard:edit_stock' product.id %}"><button class = "btn btn-primary">Update Stock</button></a>
                         
                 </div>
             </div>
