@@ -136,4 +136,7 @@ body{
         background-color: #03256c;
         color: white;
     } 
-
+    
+    .stockbox {
+        width: 0.5rem;
+    }
