@@ -141,8 +141,10 @@ body{
         width: 5rem;
     }
     .footer-bg {
+        text-align: center;
         background-color: #03256c;
         margin-left: -9rem;
         margin-right: -9rem;
         min-height: 12rem;
+        width: 83rem;
     }
