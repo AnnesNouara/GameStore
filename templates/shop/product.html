@@ -68,7 +68,12 @@
                                 {{ form.comment}}
                                 <br>
                                 <br>
-                                <button type="submit" class="btn btn-primary">Submit Review</button>
+                                {% if user_review %}
+                                    <button type="submit" class="btn btn-primary">Update Review</button>   
+                                {% else %}
+                                    <button type="submit" class="btn-primary">Submit Review</button>
+                                {% endif %}
+
                             </form>
                         {% else %}
                             <strong>To leave a review, Log in</strong> 
