@@ -138,5 +138,11 @@ body{
     } 
     
     .stockbox {
-        width: 0.5rem;
+        width: 5rem;
+    }
+    .footer-bg {
+        background-color: #03256c;
+        margin-left: -9rem;
+        margin-right: -9rem;
+        min-height: 12rem;
     }

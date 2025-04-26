@@ -1,0 +1,42 @@
+{% load static %}
+ 
+<div class="container my-5 footer">
+	<!-- Footer -->
+	<footer class=" text-white footer-bg">
+		<div class="text-center">
+			<img src="{% static 'images/pulse_logo-removebg-preview' %}" alt="Pulse" height="50rem"></a>
+			<hr class="rounded">
+			<div class="text-center justify-content-center">
+				<h6 class="text-uppercase font-weight-bold">
+					<a href="{% url 'pages:all_products' %}" class="text-white">Home</a>
+					<br>
+					<br>
+					{% if user.is_authenticated %}
+					<a href="{% url 'user_profile' user.profile.pk %}" class="text-white">Profile</a>
+					<br>
+					<br>
+					{% else %}
+					<a href="{% url 'login' %}" class="text-white">log in</a>
+					<br>
+					<br>
+					{% endif %}
+					<a href="{% url 'cart:cart_detail' %}" class="text-white">Your Cart</a>
+				  </h6>
+			</div>
+	
+		</div>
+  
+	  <!-- Copyright -->
+	  <div
+		   class="text-center p-3"
+		   style="background-color: #2C2D2D"
+		   >
+		© 2025 Copyright:
+		<a class="text-white" href="#"
+		   >Pulse</a
+		  >
+	  </div>
+	  <!-- Copyright -->
+	</footer>
+	<!-- Footer -->
+  </div>
