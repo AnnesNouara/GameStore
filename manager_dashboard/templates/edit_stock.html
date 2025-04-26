@@ -27,7 +27,7 @@
                 <h4>Units Sold: {{product.sold_count}}</h4>
                 <hr class="rounded">
                 <div class="stockbox">
-                    <form method="post" >
+                    <form method="post" class="stockbox">
                         {% csrf_token %}
                         {{ form|crispy }}
                         <button type="submit" class="btn btn-success">Save</button>
