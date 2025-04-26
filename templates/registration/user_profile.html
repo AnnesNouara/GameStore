@@ -2,44 +2,49 @@
 {% load static %}
 {% block title %}User Profile{% endblock title %}
 {% block content %}
-
-<div class="card mx-auto mt-4" style="max-width: 40rem;">
-    <div class="card shadow-lg rounded">
-<div class="card-body">
+<div class="container">
+    <div class="card mx-auto mt-4" style="max-width: 40rem;">
+        <div class="card shadow-lg rounded">
+    <div class="card-body">
+    
+        <br>
+        <div class="text-center">
+            <h1>User Profile</h1>
+            <img src="{% static 'images/icon1.png' %}" alt="" height="150rem" width="150rem">
+        </div>
+        <div class="text-center">
+            {% if is_manager %}
+            <strong>Title: Manager</strong>
+            {% endif %}
+            <br>
+            <strong>Username: {{ user.profile.user }}</strong>
+            <br>
+            <strong>Favourite Developer: {{ user.profile.Developer }}</strong>
+            <br>
+            <strong>Favourite Category: {{ user.profile.Category }}</strong>
+            <br>
+            <strong>Age: {{ user.age }}</strong>
+            <br>
+            <hr class="rounded">
+            <strong>User Permissions:</strong>
+            <br>
+            <a href="{% url 'password_change' %}"><button class = "btn btn-outline-primary">Change Password</button></a>
+            <a href="{% url 'edit_profile' user.profile.pk %}"><button class="btn btn-outline-primary">Edit profile</button></a>
+            <a href="{% url 'wishlist:wishlist_detail' %}"><button class = "btn btn-outline-dark">Your wishlist</button></a>
+            <a href="{% url 'pages:my_rentals' %}"><button class = "btn btn-outline-dark">View rentals</button></a>
+            {% if is_manager %}
+            <br>
+            <strong>Manager Permissions:</strong>
+            <br>
+            <a href="{% url 'pages:game_create' %}"><button class = "btn btn-dark">Add Product</button></a>
+            <a href="{% url 'manager_dashboard:overview' %}"><button class = "btn btn-dark">Stock Analysis</button></a>
+            {% endif %}
+        </div>
+</div>
 
     <br>
-    <div class="text-center">
-        <h1>User Profile</h1>
-        <img src="{% static 'images/icon1.png' %}" alt="" height="150rem" width="150rem">
-    </div>
-    <div class="text-center">
-        {% if is_manager %}
-        <strong>Title: Manager</strong>
-        {% endif %}
-        <br>
-        <strong>Username: {{ user.profile.user }}</strong>
-        <br>
-        <strong>Favourite Developer: {{ user.profile.Developer }}</strong>
-        <br>
-        <strong>Favourite Category: {{ user.profile.Category }}</strong>
-        <br>
-        <strong>Age: {{ user.age }}</strong>
-        <br>
-        <hr class="rounded">
-        <strong>User Permissions:</strong>
-        <br>
-        <a href="{% url 'password_change' %}"><button class = "btn btn-outline-primary">Change Password</button></a>
-        <a href="{% url 'edit_profile' user.profile.pk %}"><button class="btn btn-outline-primary">Edit profile</button></a>
-        <a href="{% url 'wishlist:wishlist_detail' %}"><button class = "btn btn-outline-dark">Your wishlist</button></a>
-        <a href="{% url 'pages:my_rentals' %}"><button class = "btn btn-outline-dark">View rentals</button></a>
-        {% if is_manager %}
-        <br>
-        <strong>Manager Permissions:</strong>
-        <br>
-        <a href="{% url 'pages:game_create' %}"><button class = "btn btn-dark">Add Product</button></a>
-        <a href="{% url 'manager_dashboard:overview' %}"><button class = "btn btn-dark">Stock Analysis</button></a>
-        {% endif %}
-    </div>
+    <hr>
+    
 
 </div>
 </div>
