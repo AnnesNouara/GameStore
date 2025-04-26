@@ -4,7 +4,7 @@ from .models import Rental, Review
 class RentalForm(forms.ModelForm):
     duration = forms.IntegerField(
     min_value=1,
-    max_value=30,
+    max_value=3,
     label='Rental Duration (days)',
     help_text='Choose how many days you want to rent this product for.')
      

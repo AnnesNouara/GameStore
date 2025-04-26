@@ -139,6 +139,7 @@ def product_detail(request, category_id, product_id):
         'product': product,
         'reviews': reviews,
         'form': form,
+        'user_review': user_review,
     })
                                                 
 def filter_view(request):
