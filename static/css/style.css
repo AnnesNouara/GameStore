@@ -143,8 +143,9 @@ body{
     .footer-bg {
         text-align: center;
         background-color: #03256c;
-        margin-left: -9rem;
-        margin-right: -9rem;
-        min-height: 12rem;
-        width: 83rem;
+        margin-left: -8rem;
+        margin-right: -8rem;
+        min-height: 8rem;
+        width: 85rem;
+        margin-bottom: -8rem;
     }

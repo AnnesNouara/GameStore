@@ -8,8 +8,8 @@
 {% block content %}
   <h2 class="mt-4">Rent "{{ product.name }}"</h2>
 
-  <div class="row mt-3">
-    <div class="col-md-4">
+  <div class="row">
+    <div class="col">
       <img src="{{ product.picture.url }}" alt="{{ product.name }}" class="img-fluid rounded">
     </div>
     <div class="col-md-8">
@@ -19,12 +19,12 @@
 
   <hr>
 
-  <form method="post" class="mt-4">
+  <form method="post">
     {% csrf_token %}
     <div class="mb-3">
       {{ form.duration.label_tag }} 
       {{ form.duration }}
-      <small class="form-text text-muted">{{ form.duration.help_text }}</small>
+      <small>{{ form.duration.help_text }}</small>
     </div>
     <button type="submit" class="btn btn-primary">Confirm Rental</button>
     <a href="{% url 'pages:all_products' %}" class="btn btn-secondary">Cancel</a>
