@@ -2,147 +2,206 @@
 {% load static %}
 {% block content %}
 <br>
-<div class="d-flex align-items-center justify-content-center flex-column min-vh-80 p-3">
-    <div class="bg-white rounded shadow p-5 w-100" style="max-width: 1200px;">
-        {% if not cart_items %}
-            <div class="text-center my-5">
-                <h1 class="my_title mb-4">
+<div class="bg-white rounded" >
+    {% if not cart_items %}
+        <div>
+            <div class="text-center">
+                <br>
+                <h1 class="text-center my_title">
                     Your shopping cart is empty
                 </h1>
-                <p>
+                <br>
+                <p class="text-center">
                     Please click <a href="{% url 'pages:all_products' %}">here</a> to continue shopping.
                 </p>
             </div>
-        {% else %}
-            <div class="text-center mb-5">
-                <h1 class="my_title">
-                    Your shopping cart
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+    {% else %}
+        <div>
+            <div class="text-center">
+                <br>
+                <h1 class="text-center my_title">
+                Your shopping cart
                 </h1>
+                <br>
             </div>
+        </div>
+        <div class=" row mx-auto">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-6 text-center">
+                <table class="table my_custom_table">
+                    <thead class="my_custom_thead">
+                        <tr>
+                            <th colspan="5">
+                                Your Bag
+                            </th>
+                        </tr>
 
-            <div class="row g-4">
-                <div class="col-12 col-lg-6">
-                    <table class="table table-bordered text-center align-middle">
-                        <thead class="table-dark">
+                    </thead>
+                    <tbody>
+                        {% for cart_item in cart_items %}
                             <tr>
-                                <th colspan="5">Your Bag</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for cart_item in cart_items %}
-                                <tr>
-                                    <td>
-                                        {% if cart_item.product.picture %}
-                                            <a href="{{cart_item.product.get_absolute_url}}">
-                                                <img src="{{cart_item.product.picture.url}}" alt="" class="img-thumbnail" style="width: 80px; height: 80px; object-fit: cover;">
-                                            </a>
-                                        {% endif %}
-                                    </td>
-                                    <td class="text-start">
-                                        {{cart_item.product.name}}
-                                        <br>
-                                        <small>Unit Price: €{{cart_item.product.price}}</small>
-                                        <br>
-                                        <small>Qty: {{cart_item.quantity}} x €{{cart_item.product.price}}</small>
-                                    </td>
-                                    <td>€{{cart_item.sub_total}}</td>
-                                    <td>
-                                        {% if cart_item.quantity < cart_item.product.stock %}
-                                            <div class="d-flex justify-content-center gap-2">
-                                                <a href="{% url 'cart:add_cart' cart_item.product.id %}">
-                                                    <img src="{% static 'images/add-to-cart.png' %}" alt="Add" width="20" height="20">
-                                                </a>
-                                                <a href="{% url 'cart:cart_remove' cart_item.product.id %}">
-                                                    <img src="{% static 'images/cart-minus.png' %}" alt="Remove" width="20" height="20">
-                                                </a>
-                                                <a href="{% url 'cart:full_remove' cart_item.product.id %}">
-                                                    <img src="{% static 'images/cartbin.png' %}" alt="Delete" width="20" height="20">
-                                                </a>
-                                                <a href="{% url 'cart:to_wishlist' cart_item.product.id %}">
-                                                    <img src="{% static 'images/wishlist.png' %}" alt="Wishlist" width="20" height="20">
-                                                </a>
-                                            </div>
-                                        {% else %}
-                                            <div class="d-flex justify-content-center gap-2">
-                                                <a href="{% url 'cart:cart_remove' cart_item.product.id %}">
-                                                    <img src="{% static 'images/cart-minus.png' %}" alt="Remove" width="20" height="20">
-                                                </a>
-                                                <a href="{% url 'cart:full_remove' cart_item.product.id %}">
-                                                    <img src="{% static 'images/cartbin.png' %}" alt="Delete" width="20" height="20">
-                                                </a>
-                                            </div>
-                                        {% endif %}
-                                    </td>
-                                </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
+                                <td>
+                                    {% if cart_item.product.picture %}
+                                    <a href="{{cart_item.product.get_absolute_url}}"><img src="{{cart_item.product.picture.url}}"
+                                    alt="" class="float-left rounded custom_image"></a>
+                                    {% endif %}
+                                </td>
+                                <td class="text-left">
+                                    {{cart_item.product.name}}
+                                    <br>
+                                    Unit Price: €{{cart_item.product.price}}
+                                    <br>
+                                    Qty: {{cart_item.quantity}} x €{{cart_item.product.price}}
+                                </td>
 
-                    <div class="p-3 bg-light rounded mt-4">
-                        <h5>Delivery Information</h5>
-                        <hr>
-                        <p><strong>Free Shipping:</strong> Free shipping on all orders over €50</p>
-                        <p><strong>Standard:</strong> 3 - 5 Working days</p>
-                        <p><strong>Express:</strong> 2 Working days</p>
-                    </div>
+                                <td>
+                                    €{{cart_item.sub_total}}
+                                </td>
+                                {% if cart_item.quantity < cart_item.product.stock %}
+                                    <div class="icon">
+                                        <td>
+                                            <a href="{% url 'cart:add_cart' cart_item.product.id %}" ><img src="{% static 'images/add-to-cart.png' %}" alt="Add product" height="20rem" width="20rem"></a>&nbsp;
+                                            <a href="{% url 'cart:cart_remove' cart_item.product.id %}" ><img src="{% static 'images/cart-minus.png' %}" alt="Reduce product" height="20rem" width="20rem"></a>&nbsp;
+                                            <a href="{% url 'cart:full_remove' cart_item.product.id %}" ><img  src="{% static 'images/cartbin.png' %}" alt="Delete product" height="20rem" width="20rem"></a>
+                                            <a href="{% url 'cart:to_wishlist' cart_item.product.id %}" ><img  src="{% static 'images/wishlist.png' %}" alt="Add to wishlist" height="20rem" width="20rem"></a>
+                                        </td>
+                                    </div>
+                                {% else %}
+                                    <td>
+                                        &nbsp;<a href="{% url 'cart:cart_remove' cart_item.product.id %}"><img src="{% static 'images/cart-minus.png' %}" alt="" height="20rem" width="20rem"></a>&nbsp;
+                                        <a href="{% url 'cart:full_remove' cart_item.product.id %}"><img src="{% static 'images/cartbin.png' %}" alt="" height="20rem" width="20rem"></a>
+                                    </td>
+                                    <td></td>
+                                {% endif %}
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                <div id="delivery">
+                    <tr>
+                    <strong><th>DELIVERY INFORMATION</th></strong>
+                    </tr>
+                    <hr class="rounded">
+                    <h5>Free Shipping:</h5>
+                        <p>Free shipping on all orders over €50</p>
+
+                     <h5>Standard Shipping:</h5>
+                    <td>
+                    <strong>
+                        <p>Standard:</p>
+                    </strong>
+                    <p>3 - 5 Working days </p>
+                    <strong>
+                        <p>Express:</p>
+                    </strong>
+                    <p>2 Working days</p>
+                    </td>
+
                 </div>
 
-                <div class="col-12 col-lg-6">
-                    <table class="table table-bordered text-center align-middle">
-                        <thead class="table-dark">
-                            <tr>
-                                <th>Checkout</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Please review your shopping cart items before proceeding with the order payment.</td>
-                            </tr>
+            </div>
+            <div class="col-lg-6 text-center">
+                <table class="table my_custom_table">
+                    <thead class="my_custom_thead">
+                        <tr>
+                            <th>
+                                Checkout
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                Please review your shopping cart items before proceeding with the order payment.
+    
+                            </td>
 
-                            <div class="vouchers">
-                                {% if voucher %}
-                                    <tr>
-                                        <td>Total: €{{ total|floatformat:"2" }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>"{{ voucher.code }}" voucher ({{ voucher.discount }}% off)</td>
-                                    </tr>
-                                    <tr>
-                                        <td>- €{{ discount|floatformat:"2" }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>New Total: €{{ new_total|floatformat:"2" }}</strong></td>
-                                    </tr>
-                                {% else %}
-                                    <tr>
-                                        <td><strong>Total: €{{ total|floatformat:"2" }}</strong></td>
+                        </tr>
+                        <div class="vouchers">
+                            {% if voucher %}
+                            <tr class="subtotal">
+                            <td>Total</td>
+                            <td colspan="4"></td>
+                            <td class="num">€{{ total|floatformat:"2" }}</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                "{{ voucher.code }}" voucher
+                                ({{ voucher.discount }}% off)
+                                </td>
+                                <td colspan="4"></td>
+                                <td class="num neg">
+                                - €{{ discount|floatformat:"2" }}
+                                </td>
+                            </tr>
+                            <tr class="total">
+                                <td>Total</td>
+                                <td colspan="4"></td>
+                                <td class="num">
+                                        €{{ new_total|floatformat:"2" }}
+                                </td>
+                            </tr>
+                            {% else %}
+                                    <tr class="total">
+                                        <td>Total</td>
+                                        <td colspan="4"></td>
+                                        <td class="num">
+                                        €{{ total|floatformat:"2" }}
+                                        </td>
                                     </tr>
                                 {% endif %}
-                            </div>
-                        </tbody>
-                    </table>
-
-                    <div class="p-3 bg-light rounded mt-4">
+                            </tbody>
+                        </table>
+                    <div id="promo">
                         <p>Do you have a promo code?</p>
                         <form action="{% url 'vouchers:apply' %}" method="post">
                             {{ voucher_apply_form }}
                             <br>
-                            <input type="submit" class="btn btn-dark mt-2" value="Apply">
+                            <br>
+                            <input type="submit" class="button" value="Apply">
                             {% csrf_token %}
+                            <hr class="rounded">
                         </form>
-
-                        <form action="{% url 'cart:cart_detail' %}" method="POST" class="mt-4">
+                        </tr>
+                        <tr>
+                            <td>
+                                <!-- Payment Form -->
+                        <form action="{% url 'cart:cart_detail' %}" method="POST">
                             {% csrf_token %}
-                            <button class="btn btn-success w-100 mb-2" type="submit">Pay with Card</button>
+                            <button class="btn btn-dark btn-block payment" type="submit">Pay with card</button>
                         </form>
                         {% if error %}
-                            <p class="text-danger">{{ error }}</p>
+                            <p style="color: red;">Error: {{ error }}</p>
                         {% endif %}
-                        <a href="{% url 'pages:all_products' %}" class="btn btn-primary w-100">Continue Shopping</a>
+                            <br>
+                                <a href="{% url 'pages:all_products' %}" class="btn btn-dark btn-block payment">Continue Shopping</a>        
+                            </td>
+                    
+                        </tr>        
+               
+                        </div>
                     </div>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-        {% endif %}
-    </div>
+        </div>
+        <br>
+    {% endif %}
 </div>
 {% endblock %}
