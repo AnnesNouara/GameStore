@@ -21,7 +21,7 @@
 
   <form method="post" class="mt-4">
     {% csrf_token %}
-    <div class="mb-3"> <!-- This adds ways to input amount of days.-->
+    <div class="mb-3">
       {{ form.duration.label_tag }} 
       {{ form.duration }}
       <small class="form-text text-muted">{{ form.duration.help_text }}</small>
